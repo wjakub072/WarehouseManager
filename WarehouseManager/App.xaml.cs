@@ -25,11 +25,15 @@ namespace WarehouseManager
         private void ConfigureServices(IServiceCollection services)
         {
             //services here
+            services.AddSingleton<NavigationStore>();
             services.AddSingleton<MainViewModel>();
             services.AddSingleton<MainWindow>(m => new MainWindow()
             {
                 DataContext = m.GetRequiredService<MainViewModel>()
             });
+            services.AddSingleton<ProductsTabViewModel>();
+            services.AddSingleton<AvailabilityViewModel>();
+            services.AddSingleton<DeliveryTabViewModel>();
 
         }
 
@@ -60,7 +64,10 @@ namespace WarehouseManager
         private INavigationService HomeNavigationService()
         {
             return new NavigationService(_host.Services.GetRequiredService<NavigationStore>(),
-                () => new HomePageViewModel());
+                () => new HomePageViewModel(
+                    _host.Services.GetRequiredService<ProductsTabViewModel>(),
+                    _host.Services.GetRequiredService<AvailabilityViewModel>(),
+                    _host.Services.GetRequiredService<DeliveryTabViewModel>()));
 
         }
     }
