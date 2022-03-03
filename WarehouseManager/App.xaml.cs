@@ -60,7 +60,7 @@ namespace WarehouseManager
         private INavigationService HomeNavigationService()
         {
             return new NavigationService(_host.Services.GetRequiredService<NavigationStore>(),
-                () => new CollectiveOrderListViewModel());
+                () => new HomePageViewModel());
 
         }
     }

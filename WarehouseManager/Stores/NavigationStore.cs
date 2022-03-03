@@ -17,10 +17,6 @@ namespace WarehouseManager.Stores
             }
         }
 
-        public NavigationStore()
-        {
-            _currentViewModel = new AddCollectiveOrderViewModel(dbContext);
-        }
 
         private void OnCurrentViewModelChanged()
         {
