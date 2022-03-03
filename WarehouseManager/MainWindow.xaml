@@ -7,7 +7,7 @@
         xmlns:viewModels="clr-namespace:WarehouseManager.ViewModels"
         xmlns:views="clr-namespace:WarehouseManager.Views"
         mc:Ignorable="d"
-        Title="WarehouseManager" Height="800" Width="1200">
+        Title="WarehouseManager" Height="600" Width="1000">
     <Grid>
         <Grid.Resources>
             <DataTemplate DataType="{x:Type viewModels:HomePageViewModel}">

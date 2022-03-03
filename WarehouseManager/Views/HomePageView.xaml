@@ -3,9 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:WarehouseManager.Views"
+             xmlns:views="clr-namespace:WarehouseManager.Views"
              mc:Ignorable="d" 
-             >
+             d:Height="600"
+             d:Width="1000">
     <Grid>
         <TabControl TabStripPlacement="Left"
                     HorizontalAlignment="Stretch"
@@ -19,7 +20,7 @@
                            Height="42"
                            Margin="5"/>
                 </TabItem.Header>
-                
+                <views:ProductsTabView DataContext="{Binding TabElements[0]}" />
             </TabItem>
             <TabItem>
                 <TabItem.Header>
@@ -30,6 +31,7 @@
                            Height="42"
                            Margin="5"/>
                 </TabItem.Header>
+                <views:AvailabilityTabView DataContext="{Binding TabElements[1]}" />
             </TabItem>
             <TabItem >
                 <TabItem.Header>
@@ -40,6 +42,7 @@
                            Height="42"
                            Margin="5"/>
                 </TabItem.Header>
+                <views:DeliveryTabView DataContext="{Binding TabElements[2]}" />
             </TabItem>
         </TabControl>
 
