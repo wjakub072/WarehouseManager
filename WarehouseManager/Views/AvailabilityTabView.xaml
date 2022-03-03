@@ -5,8 +5,120 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WarehouseManager.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="600" d:DesignWidth="1000">
     <Grid>
-            
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="7*" />
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="10" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="10" />
+            </Grid.RowDefinitions>
+
+            <Label Content="STANY MAGAZYNOWE"
+               Grid.Column="1"
+               Grid.Row="1"
+               HorizontalAlignment="Left"
+               Margin="0,0,0,0"
+               VerticalAlignment="Top"
+               FontSize="17" />
+
+            <DataGrid Grid.ColumnSpan="2"
+                  Grid.Column="1"
+                  HorizontalAlignment="Stretch"
+                  Height="auto"
+                  Margin="0,0,0,0"
+                  Grid.Row="2"
+                  CanUserAddRows="False"
+                  RowHeight="40"
+                  HeadersVisibility="Column"
+                  FontSize="16"
+                  VerticalAlignment="Stretch"
+                  Width="auto"
+                  AutoGenerateColumns="False">
+                <!--ItemsSource="{Binding Products, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"-->
+                <DataGrid.ItemContainerStyle>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="HorizontalContentAlignment"
+                            Value="Stretch" />
+                        <Setter Property="VerticalContentAlignment"
+                            Value="Stretch" />
+                    </Style>
+                </DataGrid.ItemContainerStyle>
+                <DataGrid.Resources>
+                    
+                    <Style TargetType="{x:Type Label}"
+                       x:Key="DataGridLabel">
+                        <Setter Property="VerticalAlignment"
+                            Value="Center" />
+                        <Setter Property="VerticalContentAlignment"
+                            Value="Center" />
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn  Width="30">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Label Style="{StaticResource DataGridLabel}"
+                                   Content="{Binding OrdinaryNumber}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn  Width="2*"
+                                         Header="PRODUKT"
+                                         SortMemberPath="Name">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Label Style="{StaticResource DataGridLabel}"
+                                   Content="{Binding Name}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn  Width="100"
+                                         Header="JEDNOSTKA"
+                                         SortMemberPath="Unit">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Label Style="{StaticResource DataGridLabel}"
+                                   Content="{Binding Unit}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn  Width="2*"
+                                         Header="ILOŚĆ"
+                                         SortMemberPath="Amount">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Label Style="{StaticResource DataGridLabel}"
+                                   Content="{Binding Amount}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn  Width="2*"
+                                         Header="WARTOŚĆ"
+                                         SortMemberPath="Value">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Label Style="{StaticResource DataGridLabel}"
+                                   Content="{Binding Value}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Label Content="{Binding ImportStatus, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+               Grid.Column="2"
+               HorizontalAlignment="Right"
+               Grid.Row="1"
+               VerticalAlignment="Bottom"
+               Margin="0,0,0,0" />
+        </Grid>
     </Grid>
 </UserControl>
