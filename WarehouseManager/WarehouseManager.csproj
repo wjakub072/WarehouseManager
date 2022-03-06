@@ -42,4 +42,13 @@
     </Resource>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Views\Icons\close.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Views\Icons\disc.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
