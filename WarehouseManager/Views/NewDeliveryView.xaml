@@ -9,9 +9,9 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="4*" />
-            <ColumnDefinition Width="190" />
-            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="6*" />
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="8*" />
             <ColumnDefinition Width="60" />
             <ColumnDefinition Width="10" />
         </Grid.ColumnDefinitions>
@@ -50,12 +50,12 @@
                VerticalAlignment="Center" />
         <TextBox Grid.Column="1"
                  HorizontalAlignment="Left"
-                 Margin="120,3,0,3"
+                 Margin="110,3,0,3"
                  Grid.Row="3"
                  TextWrapping="NoWrap"
                  VerticalAlignment="Center"
                  Text="{Binding CollectiveOrderName, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
-                 Width="200"
+                 Width="190"
                  Height="23" />
         <Label Content="POCHODZENIE"
                Grid.Column="1"
@@ -65,10 +65,10 @@
                VerticalAlignment="Top" />
         <ComboBox Grid.Column="1" 
                   HorizontalAlignment="Left" 
-                  Margin="120,3,0,3" 
+                  Margin="110,3,0,3" 
                   Grid.Row="4" 
                   VerticalAlignment="Top" 
-                  Width="200"
+                  Width="190"
                   Height="23"/>
         <Label Content="NIP"
                Grid.Column="1"
@@ -78,13 +78,28 @@
                VerticalAlignment="Center" />
         <TextBox Grid.Column="1"
                  HorizontalAlignment="Left"
-                 Margin="120,3,0,3"
+                 Margin="110,3,0,3"
                  Grid.Row="5"
                  TextWrapping="NoWrap"
                  VerticalAlignment="Center"
                  Text="{Binding CollectiveOrderName, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
-                 Width="200"
+                 Width="150"
                  Height="23" />
+        <Button Grid.Column="1"
+                HorizontalAlignment="Right"
+                Margin="0,0,5,0"
+                Grid.Row="5"
+                VerticalAlignment="Center"
+                Width="34"
+                Height="34"
+                Background="{x:Null}"
+                BorderBrush="{x:Null}"
+                Foreground="{x:Null}"
+                >
+            <Image Source="Icons/search.ico"
+                   Width="30"
+                   Height="30" />
+        </Button>
 
         <Label Content="DOKUMENT"
                Grid.Column="2"
@@ -99,42 +114,12 @@
                Grid.Row="3"
                VerticalAlignment="Top" />
         <ComboBox Grid.Column="2" 
-                  Grid.ColumnSpan="2"
                   HorizontalAlignment="Left" 
-                  Margin="90,3,0,3" 
+                  Margin="60,3,0,3" 
                   Grid.Row="3" 
                   VerticalAlignment="Top" 
-                  Width="200"
+                  Width="130"
                   Height="23"/>
-        <Label Content="ŁĄCZNA ILOŚĆ PRODUKTÓW"
-               Grid.Column="2"
-               HorizontalAlignment="Left"
-               Margin="20,3,0,0"
-               Grid.Row="4"
-               VerticalAlignment="Top" />
-        <Label Content="0"
-               Grid.Column="3"
-               HorizontalAlignment="Left"
-               Margin="0,0,0,0"
-               Grid.Row="4"
-               FontSize="14"
-               VerticalAlignment="Top" />
-        <Label Content="ŁĄCZNA WARTOSC PRODUKTÓW"
-               Grid.Column="3"
-               HorizontalAlignment="Left"
-               Margin="20,3,0,0"
-               FontSize="14"
-               FontWeight="DemiBold"
-               Grid.Row="5"
-               VerticalAlignment="Top" />
-        <Label Content="0"
-               Grid.Column="3"
-               FontWeight="DemiBold"
-               HorizontalAlignment="Right"
-               Margin="0,0,0,0"
-               Grid.Row="5"
-               FontSize="16"
-               VerticalAlignment="Top" />
 
 
 
@@ -245,15 +230,9 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content="{Binding ImportStatus, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-               Grid.Column="3"
-               HorizontalAlignment="Right"
-               Grid.Row="2"
-               VerticalAlignment="Bottom"
-               Margin="0,0,0,0" />
-
         <Button Grid.Column="4"
                 HorizontalAlignment="Center"
+                Grid.RowSpan="2"
                 Margin="0,0,0,0"
                 Grid.Row="2"
                 Height="40"
@@ -262,13 +241,13 @@
                 BorderBrush="{x:Null}"
                 Foreground="{x:Null}"
                 VerticalAlignment="Center"
-                Command="{Binding SaveNewCollectiveOrderCommand}">
+                >
             <Image Source="Icons/disc.ico"
                    Width="37"
                    Height="37" />
         </Button>
         <Button Grid.Column="4"
-                HorizontalAlignment="Right"
+                HorizontalAlignment="Center"
                 Margin="0,0,0,0"
                 Grid.Row="4"
                 Width="40"
@@ -276,8 +255,8 @@
                 Background="{x:Null}"
                 BorderBrush="{x:Null}"
                 Foreground="{x:Null}"
-                VerticalAlignment="Bottom"
-                Command="{Binding CancelNewCollectiveOrderCommand}">
+                VerticalAlignment="Center"
+                >
             <Image Source="Icons/close.ico"
                    Width="32"
                    Height="32" />
@@ -289,8 +268,123 @@
                   Margin="0,0,5,0" 
                   Grid.Row="2" 
                   VerticalAlignment="Center"/>
+        <Label Content="ETYKIETA"
+               Grid.Column="3"
+               HorizontalAlignment="Left"
+               Margin="0,0,0,0"
+               Grid.Row="2"
+               VerticalAlignment="Center" />
 
-
+        <Image Grid.Column="3" 
+               HorizontalAlignment="Left" 
+               Height="120" 
+               Margin="3,3,3,20" 
+               Grid.RowSpan="4" 
+               Grid.Row="3" 
+               VerticalAlignment="Top" 
+               Source="{Binding Label, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+               Width="400" />
+        <Button Grid.Column="3"
+                HorizontalAlignment="Right"
+                Margin="0,5,0,0"
+                Grid.Row="8"
+                Width="45"
+                Height="45"
+                Background="{x:Null}"
+                BorderBrush="{x:Null}"
+                Foreground="{x:Null}"
+                VerticalAlignment="Bottom"
+                Command="{Binding CancelNewCollectiveOrderCommand}">
+            <Image Source="Icons/add.ico"
+                   Width="40"
+                   Height="40" />
+        </Button>
+        <Button Grid.Column="4"
+                HorizontalAlignment="Center"
+                Margin="0,10,0,0"
+                Grid.Row="8"
+                VerticalAlignment="Bottom"
+                Width="45"
+                Height="45"
+                Background="{x:Null}"
+                BorderBrush="{x:Null}"
+                Foreground="{x:Null}"
+                >
+            <Image Source="Icons/trash.ico"
+                   Width="42"
+                   Height="41" />
+        </Button>
+        <Label Content="ILOŚĆ PRODUKTÓW"
+               Grid.Column="2"
+               HorizontalAlignment="Left"
+               Margin="20,3,0,0"
+               Grid.Row="8"
+               VerticalAlignment="Center" />
+        <Label Content="0"
+               Grid.Column="2"
+               HorizontalAlignment="Right"
+               Margin="0,0,0,0"
+               Grid.Row="8"
+               FontSize="14"
+               VerticalAlignment="Center" />
+        <Label Content="WARTOSC PRODUKTÓW"
+               Grid.Column="1"
+               HorizontalAlignment="Left"
+               Margin="0,3,0,0"
+               FontSize="14"
+               FontWeight="DemiBold"
+               Grid.Row="8"
+               VerticalAlignment="Center" />
+        <Label Content="0"
+               Grid.Column="1"
+               FontWeight="DemiBold"
+               HorizontalAlignment="Right"
+               Margin="0,0,0,0"
+               Grid.Row="8"
+               FontSize="16"
+               VerticalAlignment="Center" />
+        <Label Content="GENERUJ ETYKIETE"
+               Grid.Column="2"
+               HorizontalAlignment="Left"
+               Margin="20,0,0,0"
+               Grid.Row="4"
+               VerticalAlignment="Center" />
+        <Button Grid.Column="2"
+                HorizontalAlignment="Right"
+                Margin="0,0,10,0"
+                Grid.Row="4"
+                VerticalAlignment="Center"
+                Width="42"
+                Height="42"
+                Background="{x:Null}"
+                BorderBrush="{x:Null}"
+                Foreground="{x:Null}"
+                >
+            <Image Source="Icons/sticker.ico"
+                   Width="38"
+                   Height="38" />
+        </Button>
+        <Label Content="WYBIERZ PLIK"
+               Grid.Column="2"
+               HorizontalAlignment="Left"
+               Margin="20,0,0,0"
+               Grid.Row="5"
+               VerticalAlignment="Center" />
+        <Button Grid.Column="2"
+                HorizontalAlignment="Right"
+                Margin="0,0,10,0"
+                Grid.Row="5"
+                VerticalAlignment="Center"
+                Width="45"
+                Height="45"
+                Background="{x:Null}"
+                BorderBrush="{x:Null}"
+                Foreground="{x:Null}"
+                >
+            <Image Source="Icons/file.ico"
+                   Width="38"
+                   Height="38" />
+        </Button>
 
 
     </Grid>

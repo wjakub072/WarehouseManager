@@ -137,7 +137,7 @@
                 VerticalAlignment="Bottom"
                 Width="45"
                 Height="45"
-                Command="{Binding AddCollectiveOrderCommand}"
+                Command="{Binding NewDeliveryNavCommand}"
                 Background="{x:Null}"
                 BorderBrush="{x:Null}"
                 Foreground="{x:Null}">
@@ -155,7 +155,7 @@
                 Background="{x:Null}"
                 BorderBrush="{x:Null}"
                 Foreground="{x:Null}"
-                Command="{Binding EditCollectiveOrderCommand}">
+                >
             <Image Source="Icons/edit.ico"
                    Width="44"
                    Height="44" />
@@ -170,7 +170,7 @@
                 Background="{x:Null}"
                 BorderBrush="{x:Null}"
                 Foreground="{x:Null}"
-                Command="{Binding DeleteCollectiveOrderCommand}">
+                >
             <Image Source="Icons/trash.ico"
                    Width="42"
                    Height="41" />

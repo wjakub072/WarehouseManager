@@ -31,9 +31,13 @@ namespace WarehouseManager
             {
                 DataContext = m.GetRequiredService<MainViewModel>()
             });
-            services.AddSingleton<ProductsTabViewModel>();
-            services.AddSingleton<AvailabilityViewModel>();
-            services.AddSingleton<DeliveryTabViewModel>();
+
+            services.AddTransient<HomePageViewModel>();
+            services.AddTransient<ProductsTabViewModel>();
+            services.AddTransient<AvailabilityViewModel>();
+
+            services.AddTransient<NewDeliveryViewModel>();
+            services.AddTransient<DeliveryTabViewModel>(d => new DeliveryTabViewModel(NewDeliveryNavigation()));
 
         }
 
@@ -64,11 +68,13 @@ namespace WarehouseManager
         private INavigationService HomeNavigationService()
         {
             return new NavigationService(_host.Services.GetRequiredService<NavigationStore>(),
-                () => new HomePageViewModel(
-                    _host.Services.GetRequiredService<ProductsTabViewModel>(),
-                    _host.Services.GetRequiredService<AvailabilityViewModel>(),
-                    _host.Services.GetRequiredService<DeliveryTabViewModel>()));
+                () => _host.Services.GetRequiredService<HomePageViewModel>());
+        }
 
+        private INavigationService NewDeliveryNavigation()
+        {
+            return new NavigationService(_host.Services.GetRequiredService<NavigationStore>(),
+                () => _host.Services.GetRequiredService<NewDeliveryViewModel>());
         }
     }
 }

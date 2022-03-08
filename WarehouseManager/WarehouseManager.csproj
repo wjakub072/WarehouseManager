@@ -12,8 +12,23 @@
     <None Remove="Views\Icons\availability.ico" />
     <None Remove="Views\Icons\delivery.ico" />
     <None Remove="Views\Icons\edit.ico" />
+    <None Remove="Views\Icons\file.ico" />
     <None Remove="Views\Icons\product.ico" />
+    <None Remove="Views\Icons\search.ico" />
+    <None Remove="Views\Icons\sticker.ico" />
     <None Remove="Views\Icons\trash.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Views\Icons\file.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Icons\search.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Icons\sticker.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
@@ -28,7 +43,13 @@
     <Resource Include="Views\Icons\availability.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Views\Icons\close.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Views\Icons\delivery.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Icons\disc.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Views\Icons\edit.ico">
@@ -40,15 +61,6 @@
     <Resource Include="Views\Icons\trash.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Views\Icons\close.ico">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Views\Icons\disc.ico">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>
