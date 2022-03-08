@@ -5,6 +5,8 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <PackageIcon>warehouse.png</PackageIcon>
+    <ApplicationIcon>Views\Icons\warehouse.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,6 +19,11 @@
     <None Remove="Views\Icons\search.ico" />
     <None Remove="Views\Icons\sticker.ico" />
     <None Remove="Views\Icons\trash.ico" />
+    <None Remove="Views\Icons\warehouse.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Views\Icons\warehouse.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -61,6 +68,16 @@
     <Resource Include="Views\Icons\trash.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Views\Icons\warehouse.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Views\Icons\warehouse.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

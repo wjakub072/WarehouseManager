@@ -36,7 +36,7 @@ namespace WarehouseManager
             services.AddTransient<ProductsTabViewModel>();
             services.AddTransient<AvailabilityViewModel>();
 
-            services.AddTransient<NewDeliveryViewModel>();
+            services.AddTransient<NewDeliveryViewModel>(d => new NewDeliveryViewModel(HomeNavigationService()));
             services.AddTransient<DeliveryTabViewModel>(d => new DeliveryTabViewModel(NewDeliveryNavigation()));
 
         }
@@ -76,5 +76,6 @@ namespace WarehouseManager
             return new NavigationService(_host.Services.GetRequiredService<NavigationStore>(),
                 () => _host.Services.GetRequiredService<NewDeliveryViewModel>());
         }
+
     }
 }

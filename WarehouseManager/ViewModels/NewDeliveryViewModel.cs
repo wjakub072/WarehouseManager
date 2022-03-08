@@ -1,5 +1,8 @@
-﻿using System.Windows.Media;
+﻿using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using WarehouseManager.Commands;
+using WarehouseManager.Services;
 
 namespace WarehouseManager.ViewModels
 {
@@ -17,10 +20,12 @@ namespace WarehouseManager.ViewModels
             }
         }
 
-        public NewDeliveryViewModel()
+        public ICommand HomePageNavCommand{ get; set; }
+
+        public NewDeliveryViewModel(INavigationService homeNavigationService)
         {
             _label = new BitmapImage(new System.Uri("C:\\Users\\wjaku\\Desktop\\example.png"));
-
+            HomePageNavCommand = new NavCommand(homeNavigationService);
         }
 
     }

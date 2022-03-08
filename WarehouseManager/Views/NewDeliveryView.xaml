@@ -54,7 +54,6 @@
                  Grid.Row="3"
                  TextWrapping="NoWrap"
                  VerticalAlignment="Center"
-                 Text="{Binding CollectiveOrderName, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                  Width="190"
                  Height="23" />
         <Label Content="POCHODZENIE"
@@ -82,7 +81,6 @@
                  Grid.Row="5"
                  TextWrapping="NoWrap"
                  VerticalAlignment="Center"
-                 Text="{Binding CollectiveOrderName, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                  Width="150"
                  Height="23" />
         <Button Grid.Column="1"
@@ -140,12 +138,13 @@
                   VerticalAlignment="Stretch"
                   Width="auto"
                   AutoGenerateColumns="False"
-                  ItemsSource="{Binding AvalibleElements, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                   GridLinesVisibility="Horizontal"
                   SelectionMode="Single"
                   FontSize="16"
                   HeadersVisibility="Column"
                   RowHeight="40">
+
+            <!--ItemsSource="{Binding AvalibleElements, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"-->
             <DataGrid.ItemContainerStyle>
                 <Style TargetType="DataGridRow">
                     <Setter Property="HorizontalContentAlignment"
@@ -256,7 +255,7 @@
                 BorderBrush="{x:Null}"
                 Foreground="{x:Null}"
                 VerticalAlignment="Center"
-                >
+                Command="{Binding HomePageNavCommand}">
             <Image Source="Icons/close.ico"
                    Width="32"
                    Height="32" />
