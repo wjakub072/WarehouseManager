@@ -28,7 +28,7 @@
             <RowDefinition Height="10" />
         </Grid.RowDefinitions>
 
-        <Label Content="*KOD DOKUMENTU*"
+        <Label Content="NOWY DOKUMENT MAGAZYNOWY"
                Grid.Column="1"
                Grid.Row="1"
                HorizontalAlignment="Left"
@@ -54,7 +54,6 @@
                  Grid.Row="3"
                  TextWrapping="NoWrap"
                  VerticalAlignment="Center"
-                 Text="{Binding CollectiveOrderName, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                  Width="190"
                  Height="23" />
         <Label Content="POCHODZENIE"
@@ -82,9 +81,23 @@
                  Grid.Row="5"
                  TextWrapping="NoWrap"
                  VerticalAlignment="Center"
-                 Text="{Binding CollectiveOrderName, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
-                 Width="190"
+                 Width="150"
                  Height="23" />
+        <Button Grid.Column="1"
+                HorizontalAlignment="Right"
+                Margin="0,0,5,0"
+                Grid.Row="5"
+                VerticalAlignment="Center"
+                Width="34"
+                Height="34"
+                Background="{x:Null}"
+                BorderBrush="{x:Null}"
+                Foreground="{x:Null}"
+                >
+            <Image Source="Icons/search.ico"
+                   Width="30"
+                   Height="30" />
+        </Button>
 
         <Label Content="DOKUMENT"
                Grid.Column="2"
@@ -125,12 +138,13 @@
                   VerticalAlignment="Stretch"
                   Width="auto"
                   AutoGenerateColumns="False"
-                  ItemsSource="{Binding AvalibleElements, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                   GridLinesVisibility="Horizontal"
                   SelectionMode="Single"
                   FontSize="16"
                   HeadersVisibility="Column"
                   RowHeight="40">
+
+            <!--ItemsSource="{Binding AvalibleElements, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"-->
             <DataGrid.ItemContainerStyle>
                 <Style TargetType="DataGridRow">
                     <Setter Property="HorizontalContentAlignment"
@@ -240,8 +254,8 @@
                 Background="{x:Null}"
                 BorderBrush="{x:Null}"
                 Foreground="{x:Null}"
-                VerticalAlignment="Bottom"
-                >
+                VerticalAlignment="Center"
+                Command="{Binding HomePageNavCommand}">
             <Image Source="Icons/close.ico"
                    Width="32"
                    Height="32" />
@@ -297,7 +311,7 @@
                 >
             <Image Source="Icons/trash.ico"
                    Width="42"
-                   Height="42" />
+                   Height="41" />
         </Button>
         <Label Content="ILOŚĆ PRODUKTÓW"
                Grid.Column="2"
@@ -328,7 +342,48 @@
                Grid.Row="8"
                FontSize="16"
                VerticalAlignment="Center" />
-
+        <Label Content="GENERUJ ETYKIETE"
+               Grid.Column="2"
+               HorizontalAlignment="Left"
+               Margin="20,0,0,0"
+               Grid.Row="4"
+               VerticalAlignment="Center" />
+        <Button Grid.Column="2"
+                HorizontalAlignment="Right"
+                Margin="0,0,10,0"
+                Grid.Row="4"
+                VerticalAlignment="Center"
+                Width="42"
+                Height="42"
+                Background="{x:Null}"
+                BorderBrush="{x:Null}"
+                Foreground="{x:Null}"
+                >
+            <Image Source="Icons/sticker.ico"
+                   Width="38"
+                   Height="38" />
+        </Button>
+        <Label Content="WYBIERZ PLIK"
+               Grid.Column="2"
+               HorizontalAlignment="Left"
+               Margin="20,0,0,0"
+               Grid.Row="5"
+               VerticalAlignment="Center" />
+        <Button Grid.Column="2"
+                HorizontalAlignment="Right"
+                Margin="0,0,10,0"
+                Grid.Row="5"
+                VerticalAlignment="Center"
+                Width="45"
+                Height="45"
+                Background="{x:Null}"
+                BorderBrush="{x:Null}"
+                Foreground="{x:Null}"
+                >
+            <Image Source="Icons/file.ico"
+                   Width="38"
+                   Height="38" />
+        </Button>
 
 
     </Grid>
