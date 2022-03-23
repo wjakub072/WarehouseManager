@@ -15,17 +15,6 @@
                 <TabItem.Header>
                     <Image VerticalAlignment="Center" 
                            HorizontalAlignment="Center" 
-                           Source="Icons/product.ico" 
-                           Width="42" 
-                           Height="42"
-                           Margin="5"/>
-                </TabItem.Header>
-                <views:ProductsTabView DataContext="{Binding TabElements[0]}" />
-            </TabItem>
-            <TabItem>
-                <TabItem.Header>
-                    <Image VerticalAlignment="Center" 
-                           HorizontalAlignment="Center" 
                            Source="Icons/availability.ico" 
                            Width="42" 
                            Height="42"
@@ -33,6 +22,18 @@
                 </TabItem.Header>
                 <views:AvailabilityTabView DataContext="{Binding TabElements[1]}" />
             </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <Image VerticalAlignment="Center" 
+                           HorizontalAlignment="Center" 
+                           Source="Icons/customer.ico" 
+                           Width="42" 
+                           Height="42"
+                           Margin="5"/>
+                </TabItem.Header>
+                <views:CustomerTabView DataContext="{Binding TabElements[0]}" />
+            </TabItem>
+            
             <TabItem >
                 <TabItem.Header>
                     <Image VerticalAlignment="Center" 
@@ -53,7 +54,7 @@
                            Height="42"
                            Margin="5"/>
                 </TabItem.Header>
-                <views:WarehouseInfoTab DataContext="{Binding TabElements[3]}" />
+                <views:WarehouseInfoTabView DataContext="{Binding TabElements[3]}" />
             </TabItem>
 
         </TabControl>

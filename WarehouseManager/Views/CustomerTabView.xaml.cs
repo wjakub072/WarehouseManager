@@ -3,11 +3,11 @@
 namespace WarehouseManager.Views
 {
     /// <summary>
-    /// Interaction logic for WarehouseInfoTab.xaml
+    /// Interaction logic for ProductsTabView.xaml
     /// </summary>
-    public partial class WarehouseInfoTabView : UserControl
+    public partial class CustomerTabView : UserControl
     {
-        public WarehouseInfoTabView()
+        public CustomerTabView()
         {
             InitializeComponent();
         }

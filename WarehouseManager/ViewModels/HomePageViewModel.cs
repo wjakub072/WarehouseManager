@@ -16,11 +16,11 @@ namespace WarehouseManager.ViewModels
             }
         }
 
-        public HomePageViewModel(ProductsTabViewModel productsTabViewModel, AvailabilityViewModel availabilityViewModel, DeliveryTabViewModel deliveryTabViewModel)
+        public HomePageViewModel(CustomerTabViewModel customerTabViewModel, AvailabilityViewModel availabilityViewModel, DeliveryTabViewModel deliveryTabViewModel, WarehouseInfoTabViewModel infoTabViewModel)
         {
             _tabElements = new Collection<ViewModelBase>()
             {
-                productsTabViewModel, availabilityViewModel, deliveryTabViewModel
+                customerTabViewModel, availabilityViewModel, deliveryTabViewModel, infoTabViewModel
             };
         }
 

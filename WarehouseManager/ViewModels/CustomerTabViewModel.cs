@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WarehouseManager.ViewModels
 {
-    internal class ProductsTabViewModel : ViewModelBase
+    internal class CustomerTabViewModel : ViewModelBase
     {
     }
 }

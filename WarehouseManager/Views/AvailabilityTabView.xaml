@@ -33,7 +33,7 @@
                   Grid.Column="1"
                   HorizontalAlignment="Stretch"
                   Height="auto"
-                  Margin="0,0,0,20"
+                  Margin="0,0,0,55"
                   Grid.Row="2"
                   CanUserAddRows="False"
                   RowHeight="40"

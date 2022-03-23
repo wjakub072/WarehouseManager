@@ -33,8 +33,9 @@ namespace WarehouseManager
             });
 
             services.AddTransient<HomePageViewModel>();
-            services.AddTransient<ProductsTabViewModel>();
+            services.AddTransient<CustomerTabViewModel>();
             services.AddTransient<AvailabilityViewModel>();
+            services.AddTransient<WarehouseInfoTabViewModel>();
 
             services.AddTransient<LoginViewModel>(d => new LoginViewModel(HomeNavigation()));
             services.AddTransient<NewDeliveryViewModel>(d => new NewDeliveryViewModel(HomeNavigation()));
