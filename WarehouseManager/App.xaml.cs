@@ -36,7 +36,8 @@ namespace WarehouseManager
             services.AddTransient<ProductsTabViewModel>();
             services.AddTransient<AvailabilityViewModel>();
 
-            services.AddTransient<NewDeliveryViewModel>(d => new NewDeliveryViewModel(HomeNavigationService()));
+            services.AddTransient<LoginViewModel>(d => new LoginViewModel(HomeNavigation()));
+            services.AddTransient<NewDeliveryViewModel>(d => new NewDeliveryViewModel(HomeNavigation()));
             services.AddTransient<DeliveryTabViewModel>(d => new DeliveryTabViewModel(NewDeliveryNavigation()));
 
         }
@@ -46,7 +47,7 @@ namespace WarehouseManager
             await _host.StartAsync();
 
 
-            INavigationService homeNavigationService = HomeNavigationService();
+            INavigationService homeNavigationService = StartupNavigation();
             homeNavigationService.Navigate();
 
 
@@ -65,7 +66,13 @@ namespace WarehouseManager
             base.OnExit(e);
         }
 
-        private INavigationService HomeNavigationService()
+        private INavigationService StartupNavigation()
+        {
+            return new NavigationService(_host.Services.GetRequiredService<NavigationStore>(),
+                () => _host.Services.GetRequiredService<LoginViewModel>());
+        }
+
+        private INavigationService HomeNavigation()
         {
             return new NavigationService(_host.Services.GetRequiredService<NavigationStore>(),
                 () => _host.Services.GetRequiredService<HomePageViewModel>());

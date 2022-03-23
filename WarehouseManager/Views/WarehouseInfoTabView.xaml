@@ -10,24 +10,68 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10" />
             <ColumnDefinition Width="3*" />
-            <ColumnDefinition Width="7*" />
+            <ColumnDefinition Width="140" />
+            <ColumnDefinition Width="200" />
             <ColumnDefinition Width="3*" />
             <ColumnDefinition Width="10" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="10" />
+            <RowDefinition Height="30" />
             <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="10" />
         </Grid.RowDefinitions>
 
-        <Label Content="NAZWA MAGAZYNU"
+        <Label Content="WYBRANY MAGAZYN"
                Grid.Column="2"
                Grid.Row="1"
                HorizontalAlignment="Center"
                Margin="0,0,0,0"
                VerticalAlignment="Top"
+               Grid.ColumnSpan="2"
                FontSize="17" />
+        <Label Content="WAREHOUSE"
+               Grid.Column="2"
+               Grid.Row="2"
+               HorizontalAlignment="Center"
+               Margin="0,0,0,0"
+               VerticalAlignment="Top"
+               Grid.ColumnSpan="2"
+               FontSize="15" />
+        
+        <Label Content="ZALOGOWANY OPERATOR"
+               Grid.Column="2"
+               Grid.ColumnSpan="2"
+               Grid.Row="2"
+               HorizontalAlignment="Center"
+               Margin="0,0,0,0"
+               VerticalAlignment="Bottom"
+               FontSize="14" />
+        <Label Content="LOGIN"
+               Grid.Column="2"
+               Grid.ColumnSpan="2"
+               Grid.Row="3"
+               HorizontalAlignment="Center"
+               Margin="0,0,0,0"
+               VerticalAlignment="Top"
+               FontSize="14" />
+        
+
+        <Label Content="JAKUB WŁODARCZYK"
+               Grid.Column="1"
+               Grid.Row="4"
+               HorizontalAlignment="Left"
+               Margin="0,0,0,0"
+               VerticalAlignment="Bottom"
+               FontSize="8" />
+        <Label Content="VER. 0.2"
+               Grid.Column="4"
+               Grid.Row="4"
+               HorizontalAlignment="Right"
+               Margin="0,0,0,0"
+               VerticalAlignment="Bottom"
+               FontSize="8" />
     </Grid>
 </UserControl>

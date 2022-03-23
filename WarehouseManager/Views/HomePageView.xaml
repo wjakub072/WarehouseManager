@@ -44,7 +44,6 @@
                 </TabItem.Header>
                 <views:DeliveryTabView DataContext="{Binding TabElements[2]}" />
             </TabItem>
-            <TabItem Height="300" Foreground="White" BorderBrush="#FFF4F4F4" IsEnabled="False" />
             <TabItem >
                 <TabItem.Header>
                     <Image VerticalAlignment="Center" 
@@ -54,8 +53,9 @@
                            Height="42"
                            Margin="5"/>
                 </TabItem.Header>
-                <views:DeliveryTabView DataContext="{Binding TabElements[3]}" />
+                <views:WarehouseInfoTab DataContext="{Binding TabElements[3]}" />
             </TabItem>
+
         </TabControl>
 
     </Grid>
