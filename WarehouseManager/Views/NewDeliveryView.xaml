@@ -10,8 +10,8 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10" />
             <ColumnDefinition Width="6*" />
-            <ColumnDefinition Width="200" />
             <ColumnDefinition Width="8*" />
+            <ColumnDefinition Width="220" />
             <ColumnDefinition Width="60" />
             <ColumnDefinition Width="10" />
         </Grid.ColumnDefinitions>
@@ -36,7 +36,7 @@
                VerticalAlignment="Top"
                FontSize="16" />
 
-        <Label Content="DOSTAWCA"
+        <Label Content="KLIENT"
                Grid.Column="1"
                HorizontalAlignment="Left"
                Margin="0,0,0,0"
@@ -100,32 +100,34 @@
         </Button>
 
         <Label Content="DOKUMENT"
-               Grid.Column="2"
+               Grid.Column="3"
                HorizontalAlignment="Left"
                Margin="0,0,0,0"
                Grid.Row="2"
                VerticalAlignment="Bottom" />
         <Label Content="TYP"
-               Grid.Column="2"
+               Grid.Column="3"
                HorizontalAlignment="Left"
-               Margin="20,0,0,0"
+               Margin="20,20,0,0"
                Grid.Row="3"
+               Grid.RowSpan="2"
                VerticalAlignment="Top" />
-        <ComboBox Grid.Column="2" 
+        <ComboBox Grid.Column="3" 
                   HorizontalAlignment="Left" 
-                  Margin="60,3,0,3" 
+                  Margin="60,23,0,3" 
                   Grid.Row="3" 
+                  Grid.RowSpan="2"
                   VerticalAlignment="Top" 
-                  Width="130"
+                  Width="145"
                   Height="23"/>
 
 
 
 
-        <Label Content="PRODUKTY"
+        <Label Content="ELEMENTY"
                Grid.Column="1"
                HorizontalAlignment="Left"
-               Margin="0,10,0,5"
+               Margin="0,5,0,5"
                Grid.Row="6"
                VerticalAlignment="Bottom" />
         <DataGrid Grid.ColumnSpan="4"
@@ -195,8 +197,8 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn  Width="2*"
-                                         Header="PRODUKT"
+                <DataGridTemplateColumn  Width="3*"
+                                         Header="JEDNOSTKA"
                                          SortMemberPath="OrderCode">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -207,6 +209,26 @@
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn  Width="2*"
                                          Header="ILOSC"
+                                         SortMemberPath="CommodityName">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Style="{StaticResource DataGridLabel}"
+                                   Content="{Binding CommodityName}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn  Width="2*"
+                                         Header="KOD DODSTAWY"
+                                         SortMemberPath="CommodityName">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Style="{StaticResource DataGridLabel}"
+                                   Content="{Binding CommodityName}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn  Width="3*"
+                                         Header="ADRES"
                                          SortMemberPath="CommodityName">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -267,22 +289,78 @@
                   Margin="0,0,5,0" 
                   Grid.Row="2" 
                   VerticalAlignment="Center"/>
-        <Label Content="ETYKIETA"
-               Grid.Column="3"
+        <Label Content="ADRESY DOSTAW"
+               Grid.Column="2"
                HorizontalAlignment="Left"
                Margin="0,0,0,0"
                Grid.Row="2"
-               VerticalAlignment="Center" />
-
-        <Image Grid.Column="3" 
-               HorizontalAlignment="Left" 
-               Height="120" 
-               Margin="3,3,3,20" 
-               Grid.RowSpan="4" 
-               Grid.Row="3" 
-               VerticalAlignment="Top" 
-               Source="{Binding Label, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-               Width="400" />
+               VerticalAlignment="Bottom" />
+        <DataGrid Grid.Column="2"
+                  HorizontalAlignment="Stretch"
+                  Height="auto"
+                  CanUserAddRows="False"
+                  Margin="10,0,10,0"
+                  Grid.Row="3"
+                  Grid.RowSpan="3"
+                  VerticalAlignment="Stretch"
+                  Width="auto"
+                  AutoGenerateColumns="False"
+                  GridLinesVisibility="Horizontal"
+                  SelectionMode="Single"
+                  FontSize="14"
+                  HeadersVisibility="Column"
+                  RowHeight="30">
+            <DataGrid.ItemContainerStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="HorizontalContentAlignment"
+                            Value="Stretch" />
+                    <Setter Property="VerticalContentAlignment"
+                            Value="Stretch" />
+                </Style>
+            </DataGrid.ItemContainerStyle>
+            <DataGrid.Resources>
+                <Style TargetType="{x:Type Label}"
+                       x:Key="DataGridLabel">
+                    <Setter Property="VerticalAlignment"
+                            Value="Center" />
+                    <Setter Property="VerticalContentAlignment"
+                            Value="Center" />
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                
+                <DataGridTemplateColumn  Width="*"
+                                         Header="KRAJ"
+                                         SortMemberPath="OrderCode">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Style="{StaticResource DataGridLabel}"
+                                   Content="{Binding OrderCode}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn  Width="2*"
+                                         Header="MIEJSCOWOŚĆ"
+                                         SortMemberPath="CommodityName">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Style="{StaticResource DataGridLabel}"
+                                   Content="{Binding CommodityName}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn  Width="2*"
+                                         Header="ADRES"
+                                         SortMemberPath="CommodityName">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Style="{StaticResource DataGridLabel}"
+                                   Content="{Binding CommodityName}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
         <Button Grid.Column="3"
                 HorizontalAlignment="Right"
                 Margin="0,5,0,0"
@@ -343,15 +421,15 @@
                FontSize="16"
                VerticalAlignment="Center" />
         <Label Content="GENERUJ ETYKIETE"
-               Grid.Column="2"
+               Grid.Column="3"
                HorizontalAlignment="Left"
                Margin="20,0,0,0"
-               Grid.Row="4"
+               Grid.Row="5"
                VerticalAlignment="Center" />
-        <Button Grid.Column="2"
+        <Button Grid.Column="3"
                 HorizontalAlignment="Right"
                 Margin="0,0,10,0"
-                Grid.Row="4"
+                Grid.Row="5"
                 VerticalAlignment="Center"
                 Width="42"
                 Height="42"
@@ -360,27 +438,6 @@
                 Foreground="{x:Null}"
                 >
             <Image Source="Icons/sticker.ico"
-                   Width="38"
-                   Height="38" />
-        </Button>
-        <Label Content="WYBIERZ PLIK"
-               Grid.Column="2"
-               HorizontalAlignment="Left"
-               Margin="20,0,0,0"
-               Grid.Row="5"
-               VerticalAlignment="Center" />
-        <Button Grid.Column="2"
-                HorizontalAlignment="Right"
-                Margin="0,0,10,0"
-                Grid.Row="5"
-                VerticalAlignment="Center"
-                Width="45"
-                Height="45"
-                Background="{x:Null}"
-                BorderBrush="{x:Null}"
-                Foreground="{x:Null}"
-                >
-            <Image Source="Icons/file.ico"
                    Width="38"
                    Height="38" />
         </Button>

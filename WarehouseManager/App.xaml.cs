@@ -33,7 +33,9 @@ namespace WarehouseManager
             });
 
             services.AddTransient<HomePageViewModel>();
-            services.AddTransient<CustomerTabViewModel>();
+
+            services.AddTransient<CustomerViewModel>(d => new CustomerViewModel(HomeNavigation()));
+            services.AddTransient<CustomerTabViewModel>(d => new CustomerTabViewModel(NewCustomerNavigation()));
             services.AddTransient<AvailabilityViewModel>();
             services.AddTransient<WarehouseInfoTabViewModel>();
 
@@ -83,6 +85,12 @@ namespace WarehouseManager
         {
             return new NavigationService(_host.Services.GetRequiredService<NavigationStore>(),
                 () => _host.Services.GetRequiredService<NewDeliveryViewModel>());
+        }
+
+        private INavigationService NewCustomerNavigation()
+        {
+            return new NavigationService(_host.Services.GetRequiredService<NavigationStore>(),
+                () => _host.Services.GetRequiredService<CustomerViewModel>());
         }
 
     }

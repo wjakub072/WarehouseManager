@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="WarehouseManager.Views.CustomerTabView"
+﻿<UserControl x:Class="WarehouseManager.Views.CustomerView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -9,33 +9,116 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="3*" />
-            <ColumnDefinition Width="7*" />
-            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="60" />
             <ColumnDefinition Width="10" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="2" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="10" />
         </Grid.RowDefinitions>
 
-        <Label Content="KLIENCI MAGAZYNU"
+        <Button Grid.Column="3"
+                HorizontalAlignment="Center"
+                Grid.RowSpan="2"
+                Margin="0,0,0,0"
+                Grid.Row="2"
+                Height="40"
+                Width="40"
+                Background="{x:Null}"
+                BorderBrush="{x:Null}"
+                Foreground="{x:Null}"
+                VerticalAlignment="Top"
+                >
+            <Image Source="Icons/disc.ico"
+                   Width="37"
+                   Height="37" />
+        </Button>
+        <Button Grid.Column="3"
+                HorizontalAlignment="Center"
+                Margin="0,20,0,0"
+                Grid.Row="3"
+                Grid.RowSpan="2"
+                Width="40"
+                Height="40"
+                Background="{x:Null}"
+                BorderBrush="{x:Null}"
+                Foreground="{x:Null}"
+                VerticalAlignment="Top"
+                Command="{Binding HomePageNavCommand}">
+            <Image Source="Icons/close.ico"
+                   Width="32"
+                   Height="32" />
+        </Button>
+        <Label Content="KLIENT"
                Grid.Column="1"
-               Grid.Row="1"
                HorizontalAlignment="Left"
                Margin="0,0,0,0"
-               VerticalAlignment="Top"
-               FontSize="17" />
+               Grid.Row="1"
+               VerticalAlignment="Bottom" />
+        <Label Content="NAZWA"
+               Grid.Column="1"
+               HorizontalAlignment="Left"
+               Margin="20,0,0,0"
+               Grid.Row="2"
+               VerticalAlignment="Center" />
+        <TextBox Grid.Column="1"
+                 HorizontalAlignment="Left"
+                 Margin="110,3,0,3"
+                 Grid.Row="2"
+                 TextWrapping="NoWrap"
+                 VerticalAlignment="Center"
+                 Width="190"
+                 Height="23" />
+        <Label Content="POCHODZENIE"
+               Grid.Column="2"
+               HorizontalAlignment="Left"
+               Margin="20,0,0,0"
+               Grid.Row="2"
+               VerticalAlignment="Top" />
+        <ComboBox Grid.Column="2" 
+                  HorizontalAlignment="Left" 
+                  Margin="110,3,0,3" 
+                  Grid.Row="2" 
+                  VerticalAlignment="Top" 
+                  Width="190"
+                  Height="23"/>
+        <Label Content="NIP"
+               Grid.Column="1"
+               HorizontalAlignment="Left"
+               Margin="20,0,0,0"
+               Grid.Row="3"
+               VerticalAlignment="Center" />
+        <TextBox Grid.Column="1"
+                 HorizontalAlignment="Left"
+                 Margin="110,3,0,3"
+                 Grid.Row="3"
+                 TextWrapping="NoWrap"
+                 VerticalAlignment="Center"
+                 Width="190"
+                 Height="23" />
 
-        <DataGrid Grid.ColumnSpan="3"
+        <Label Content="ADRESY"
+               Grid.Column="1"
+               Grid.Row="5"
+               HorizontalAlignment="Left"
+               Margin="50,10,0,0"
+               VerticalAlignment="Top"
+               FontSize="14" />
+        <DataGrid Grid.ColumnSpan="2"
                   Grid.Column="1"
                   HorizontalAlignment="Stretch"
                   Height="auto"
-                  Margin="0,0,0,0"
-                  Grid.Row="2"
+                  Margin="50,0,0,20"
+                  Grid.Row="6"
                   CanUserAddRows="False"
                   RowHeight="40"
                   HeadersVisibility="Column"
@@ -53,19 +136,7 @@
                 </Style>
             </DataGrid.ItemContainerStyle>
             <DataGrid.Resources>
-                <Style TargetType="{x:Type CheckBox}"
-                       x:Key="DataGridCheckBox">
-                    <Setter Property="HorizontalAlignment"
-                            Value="Center" />
-                    <Setter Property="HorizontalContentAlignment"
-                            Value="Center" />
-                    <Setter Property="VerticalAlignment"
-                            Value="Center" />
-                    <Setter Property="Margin"
-                            Value="4" />
-                    <Setter Property="VerticalContentAlignment"
-                            Value="Center" />
-                </Style>
+
                 <Style TargetType="{x:Type Label}"
                        x:Key="DataGridLabel">
                     <Setter Property="VerticalAlignment"
@@ -75,16 +146,18 @@
                 </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
-                <DataGridTemplateColumn Width="30">
+                <DataGridTemplateColumn  Width="*"
+                                         Header="KRAJ"
+                                         SortMemberPath="Name">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <CheckBox Style="{StaticResource DataGridCheckBox}"
-                                      IsChecked="{Binding Selected, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                            <Label Style="{StaticResource DataGridLabel}"
+                                   Content="{Binding Name}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn  Width="2*"
-                                         Header="NAZWA"
+                                         Header="MIEJSCOWOŚĆ"
                                          SortMemberPath="Name">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -94,17 +167,17 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn  Width="*"
-                                         Header="POCHODZENIE"
-                                         SortMemberPath="InitDate">
+                                         Header="KOD POCZTOWY"
+                                         SortMemberPath="Name">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Label Style="{StaticResource DataGridLabel}"
-                                   Content="{Binding Unit}" />
+                                   Content="{Binding Name}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn  Width="2*"
-                                         Header="NIP"
+                                         Header="ADRES"
                                          SortMemberPath="InitDate">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -115,22 +188,16 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content="{Binding ImportStatus, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-               Grid.Column="3"
-               HorizontalAlignment="Right"
-               Grid.Row="1"
-               VerticalAlignment="Bottom"
-               Margin="0,0,0,0" />
 
         <Button 
-                Grid.Column="3"
+                Grid.Column="2"
                 HorizontalAlignment="Right"
                 Margin="0,5,101,0"
-                Grid.Row="3"
+                Grid.Row="7"
                 VerticalAlignment="Bottom"
                 Width="45"
                 Height="45"
-                Command="{Binding NewCustomerCommand}"
+                Command="{Binding NewDeliveryNavCommand}"
                 Background="{x:Null}"
                 BorderBrush="{x:Null}"
                 Foreground="{x:Null}">
@@ -138,10 +205,10 @@
                    Width="40" 
                    Height="40" />
         </Button>
-        <Button Grid.Column="3"
+        <Button Grid.Column="2"
                 HorizontalAlignment="Right"
                 Margin="0,5,50,0"
-                Grid.Row="3"
+                Grid.Row="7"
                 VerticalAlignment="Bottom"
                 Width="46"
                 Height="46"
@@ -153,10 +220,10 @@
                    Width="44"
                    Height="44" />
         </Button>
-        <Button Grid.Column="3"
+        <Button Grid.Column="2"
                 HorizontalAlignment="Right"
                 Margin="0,10,0,0"
-                Grid.Row="3"
+                Grid.Row="7"
                 VerticalAlignment="Bottom"
                 Width="45"
                 Height="45"
@@ -168,5 +235,6 @@
                    Width="42"
                    Height="41" />
         </Button>
+
     </Grid>
 </UserControl>

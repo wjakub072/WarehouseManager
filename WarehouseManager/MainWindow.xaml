@@ -19,6 +19,9 @@
             <DataTemplate DataType="{x:Type viewModels:NewDeliveryViewModel}">
                 <views:NewDeliveryView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModels:CustomerViewModel}">
+                <views:CustomerView/>
+            </DataTemplate>
         </Grid.Resources>
         <ContentControl Content="{Binding CurrentViewModel}"/>
     </Grid>
