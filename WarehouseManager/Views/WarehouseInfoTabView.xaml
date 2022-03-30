@@ -156,6 +156,14 @@
                    HorizontalAlignment="Stretch" 
                    Height="20" 
                    Grid.Row="4"/>
+        <Border Grid.Column="0" 
+                   Grid.ColumnSpan="5"
+                    BorderThickness="4"
+                    
+                    Background="{StaticResource Dark}"
+                   HorizontalAlignment="Stretch" 
+                   Height="20" 
+                   Grid.Row="4"/>
         <Label Content="JAKUB WŁODARCZYK"
                Grid.Column="1"
                Grid.Row="4"

@@ -12,8 +12,8 @@
     <Grid Background="{StaticResource Background}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="7*" />
             <ColumnDefinition Width="60" />
             <ColumnDefinition Width="10" />
         </Grid.ColumnDefinitions>
@@ -63,11 +63,109 @@
         </Button>
         <Label Content="KLIENT"
                Grid.Column="1"
+               FontSize="16"
                HorizontalAlignment="Left"
                Margin="0,0,0,0"
                Grid.Row="1"
                Foreground="{StaticResource Dark}"
                VerticalAlignment="Bottom" />
+        <Label Content="ADRES FIRMY"
+               Grid.Column="2"
+               HorizontalAlignment="Left"
+               Margin="0,0,0,0"
+               Grid.Row="1"
+               FontSize="14"
+               Foreground="{StaticResource Dark}"
+               VerticalAlignment="Bottom" />
+        <Label Content="KRAJ"
+               Grid.Column="2"
+               Foreground="{StaticResource Dark}"
+               HorizontalAlignment="Left"
+               Margin="20,0,0,0"
+               Grid.Row="2"
+               VerticalAlignment="Center" />
+        <TextBox Grid.Column="2"
+                 HorizontalAlignment="Left"
+                 Background="{StaticResource Mid}"
+                 Foreground="{StaticResource Dark}"
+                 BorderBrush="{StaticResource Mid}"
+                 FocusVisualStyle="{x:Null}"
+                 Margin="113,3,0,3"
+                 Grid.Row="2"
+                 TextWrapping="NoWrap"
+                 VerticalAlignment="Center"
+                 Width="190"
+                 Height="23" />
+        <Label Content="MIEJSCOWOŚĆ"
+               Grid.Column="2"
+               Foreground="{StaticResource Dark}"
+               HorizontalAlignment="Left"
+               Margin="20,0,0,0"
+               Grid.Row="3"
+               VerticalAlignment="Center" />
+        <TextBox Grid.Column="2"
+                 HorizontalAlignment="Left"
+                 Margin="113,3,0,3"
+                 Background="{StaticResource Mid}"
+                 Foreground="{StaticResource Dark}"
+                 BorderBrush="{StaticResource Mid}"
+                 FocusVisualStyle="{x:Null}"
+                 Grid.Row="3"
+                 TextWrapping="NoWrap"
+                 VerticalAlignment="Center"
+                 Width="190"
+                 Height="23" />
+        <Label Content="KOD POCZTOWY"
+               Grid.Column="2"
+               Grid.RowSpan="2"
+               Foreground="{StaticResource Dark}"
+               HorizontalAlignment="Left"
+               Margin="320,0,0,0"
+               Grid.Row="2"
+               VerticalAlignment="Center" />
+        <TextBox Grid.Column="2"
+                 HorizontalAlignment="Left"
+                 Margin="423,3,0,3"
+                 Background="{StaticResource Mid}"
+                 Foreground="{StaticResource Dark}"
+                 BorderBrush="{StaticResource Mid}"
+                 FocusVisualStyle="{x:Null}"
+                 Grid.Row="2"
+                 Grid.RowSpan="2"
+                 TextWrapping="NoWrap"
+                 VerticalAlignment="Center"
+                 Width="150"
+                 Height="23" />
+        <Label Content="ULICA NR."
+               Grid.Column="2"
+               Foreground="{StaticResource Dark}"
+               HorizontalAlignment="Left"
+               Margin="20,0,0,0"
+               Grid.Row="4"
+               VerticalAlignment="Center" />
+        <TextBox Grid.Column="2"
+                 HorizontalAlignment="Left"
+                 Margin="113,3,0,3"
+                 Background="{StaticResource Mid}"
+                 Foreground="{StaticResource Dark}"
+                 BorderBrush="{StaticResource Mid}"
+                 FocusVisualStyle="{x:Null}"
+                 Grid.Row="4"
+                 TextWrapping="NoWrap"
+                 VerticalAlignment="Center"
+                 Width="190"
+                 Height="23" />
+        <CheckBox Grid.Column="2" 
+                  Content="TRAKTOWAĆ JAKO ADRES DOSTAWY" 
+                  HorizontalAlignment="Left" 
+                  FontSize="13"
+                  Background="{StaticResource Mid}"
+                  Foreground="{StaticResource Dark}"
+                  BorderBrush="{StaticResource Mid}"
+                  Margin="343,0,0,0" 
+                  Grid.Row="4" 
+                  VerticalAlignment="Center"/>
+
         <Label Content="NAZWA"
                Grid.Column="1"
                Foreground="{StaticResource Dark}"
@@ -81,29 +179,77 @@
                  Foreground="{StaticResource Dark}"
                  BorderBrush="{StaticResource Mid}"
                  FocusVisualStyle="{x:Null}"
-                 Margin="110,3,0,3"
+                 Margin="113,3,0,3"
                  Grid.Row="2"
                  TextWrapping="NoWrap"
                  VerticalAlignment="Center"
                  Width="190"
                  Height="23" />
         <Label Content="POCHODZENIE"
-               Grid.Column="2"
+               Grid.Column="1"
                Foreground="{StaticResource Dark}"
                HorizontalAlignment="Left"
-               Margin="20,0,0,0"
-               Grid.Row="2"
+               Margin="20,10,0,0"
+               Grid.Row="4"
                VerticalAlignment="Top" />
-        <ComboBox Grid.Column="2" 
+        <ComboBox Grid.Column="1" 
                   HorizontalAlignment="Left" 
-                  Margin="110,3,0,3" 
-                  Grid.Row="2" 
+                  Margin="113,13,0,3" 
+                  Grid.Row="4" 
                   Background="{StaticResource Mid}"
                   Foreground="{StaticResource Dark}"
                   BorderBrush="{StaticResource Mid}"
                   VerticalAlignment="Top" 
                   Width="190"
-                  Height="23"/>
+                  Height="23">
+            <ComboBox.Resources>
+                <Style TargetType="{x:Type ComboBox}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ComboBox">
+                                <Grid>
+                                    <ToggleButton Grid.Column="2" Focusable="false" IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}" >
+                                        <ToggleButton.Template>
+                                            <ControlTemplate>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="5*" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Border x:Name="Border"  Grid.ColumnSpan="2" CornerRadius="0" Background="{StaticResource Dark}"  />
+
+                                                    <Path x:Name="Arrow" Grid.Column="1"  Fill="{StaticResource AccentBlue}" HorizontalAlignment="Center" VerticalAlignment="Center" Data="M 0 0 L 4 4 L 8 0 Z"/>
+                                                </Grid>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="ToggleButton.IsMouseOver" Value="true">
+                                                        <Setter TargetName="Border" Property="Background" Value="{StaticResource Mid}" />
+                                                    </Trigger>
+                                                    <Trigger Property="ToggleButton.IsChecked" Value="true">
+                                                        <Setter TargetName="Border" Property="Background" Value="{StaticResource Mid}" />
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </ToggleButton.Template>
+                                    </ToggleButton>
+                                    <ContentPresenter Name="ContentSite" IsHitTestVisible="False"  Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" Margin="3"  />
+                                    <TextBox x:Name="PART_EditableTextBox" Visibility="Hidden" IsReadOnly="{TemplateBinding IsReadOnly}"/>
+                                    <Popup Name="Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True"  Focusable="False" PopupAnimation="Slide">
+                                        <Grid  Name="DropDown" SnapsToDevicePixels="True" MinWidth="{TemplateBinding ActualWidth}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                            <Border x:Name="DropDownBorder" Background="{StaticResource Mid}" />
+                                            <ScrollViewer SnapsToDevicePixels="True">
+                                                <StackPanel IsItemsHost="True" />
+                                            </ScrollViewer>
+                                        </Grid>
+                                    </Popup>
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                    </Style.Triggers>
+                </Style>
+            </ComboBox.Resources>
+        </ComboBox>
         <Label Content="NIP"
                Grid.Column="1"
                Foreground="{StaticResource Dark}"
@@ -113,7 +259,7 @@
                VerticalAlignment="Center" />
         <TextBox Grid.Column="1"
                  HorizontalAlignment="Left"
-                 Margin="110,3,0,3"
+                 Margin="113,3,0,3"
                  Background="{StaticResource Mid}"
                  Foreground="{StaticResource Dark}"
                  BorderBrush="{StaticResource Mid}"
@@ -124,14 +270,14 @@
                  Width="190"
                  Height="23" />
 
-        <Label Content="ADRESY"
+        <Label Content="ADRESY DOSTAW"
                Grid.Column="1"
                Foreground="{StaticResource Dark}"
                Grid.Row="5"
                HorizontalAlignment="Left"
                Margin="50,10,0,0"
                VerticalAlignment="Top"
-               FontSize="14" />
+               FontSize="15" />
         <DataGrid Grid.ColumnSpan="2"
                   Grid.Column="1"
                   HorizontalAlignment="Stretch"
@@ -259,6 +405,6 @@
                    Width="42"
                    Height="41" />
         </Button>
-
+        
     </Grid>
 </UserControl>

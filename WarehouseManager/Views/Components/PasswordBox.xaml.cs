@@ -26,12 +26,8 @@ namespace WarehouseManager.Views.Components
             set { SetValue(PasswordPropertyProperty, value); }
         }
 
-       
-
         public static readonly DependencyProperty PasswordPropertyProperty =
             DependencyProperty.Register("PasswordProperty", typeof(string), typeof(PasswordBox), new PropertyMetadata(string.Empty));
-
-
 
         public PasswordBox()
         {

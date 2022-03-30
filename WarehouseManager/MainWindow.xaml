@@ -9,24 +9,24 @@
         mc:Ignorable="d"
         Title="WarehouseManager" Height="600" Width="1000"
         WindowStyle="None"
-        Background="#343633"
-        >
+        AllowsTransparency="True">
     <Window.Resources>
         <ResourceDictionary Source="Views/Themes.xaml"/>
     </Window.Resources>
+    
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="30"/>
+    </WindowChrome.WindowChrome>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Rectangle Grid.Column="0" 
-                   Fill="{StaticResource Dark}"
-                   Stroke="{StaticResource Dark}"
-                   HorizontalAlignment="Stretch" 
-                   Height="30" 
-                   Grid.Row="0"/>
-        <Label 
+        <Grid VerticalAlignment="Top"
+                    Background="{StaticResource Dark}">
+            <Label 
                  Foreground="{StaticResource AccentBlue}"
                  HorizontalAlignment="Left" 
                  Grid.Row="0" 
@@ -34,35 +34,60 @@
                  VerticalAlignment="Center" 
                 Content="WAREHOUSE MANAGER"
                  FontSize="18"
-            Height="30"/>
-        <Button 
-                HorizontalAlignment="Right"
-                Margin="0,0,29,0"
-                Grid.Row="0"
-                VerticalAlignment="Stretch"
-                Width="30"
-                Command="{Binding NewCustomerCommand}"
-                Background="{x:Null}"
-                BorderBrush="{x:Null}"
-                Foreground="{x:Null}">
-            <Image Source="Views/Icons/minimalizeWindow.ico" 
-                   Width="23" 
-                   Height="23" />
-        </Button>
-        <Button 
-                HorizontalAlignment="Right"
-                Margin="0,0,0,0"
-                Grid.Row="0"
-                VerticalAlignment="Stretch"
-                Width="30"
-                Command="{Binding NewCustomerCommand}"
-                Background="{x:Null}"
-                BorderBrush="{x:Null}"
-                Foreground="{x:Null}">
-            <Image Source="Views/Icons/closeWindow.ico" 
-                   Width="23" 
-                   Height="23" />
-        </Button>
+                Height="30"/>
+            <StackPanel Grid.Row="0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Stretch"
+                    WindowChrome.IsHitTestVisibleInChrome="True"
+                    Orientation="Horizontal">
+                <Button 
+                    HorizontalAlignment="Right"
+                    Margin="0,0,0,0"
+                    Grid.Row="0"
+                    x:Name="minimalize"
+                    VerticalAlignment="Stretch"
+                    Width="30"
+                    Background="{x:Null}"
+                    BorderBrush="{x:Null}"
+                    Foreground="{x:Null}">
+                    <Image 
+                       Margin="0,3,0,0"
+                        Source="Views/Icons/minimizeFullWindow.ico" 
+                       Width="23" 
+                       Height="23" />
+                </Button>
+                <Button 
+                    HorizontalAlignment="Right"
+                    Margin="0,0,0,0"
+                    Grid.Row="0"
+                    x:Name="maximalize"
+                    VerticalAlignment="Stretch"
+                    Width="30"
+                    Background="{x:Null}"
+                    BorderBrush="{x:Null}"
+                    Foreground="{x:Null}">
+                    <Image x:Name="maximalizeIco" Source="Views/Icons/maximalizeWindow.ico" 
+                       Width="23" 
+                       Height="23" />
+                </Button>
+                <Button 
+                    HorizontalAlignment="Right"
+                    Margin="0,0,0,0"
+                    Grid.Row="0"
+                    x:Name="close"
+                    VerticalAlignment="Stretch"
+                    Width="30"
+                    Background="{x:Null}"
+                    BorderBrush="{x:Null}"
+                    Foreground="{x:Null}">
+                        <Image Source="Views/Icons/closeWindow.ico" 
+                       Width="20" 
+                       Height="20" />
+                    </Button>
+            </StackPanel>
+        </Grid>
+        
+        
         
         
         <Grid Grid.Row="1">
