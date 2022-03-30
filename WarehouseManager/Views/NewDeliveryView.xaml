@@ -6,11 +6,15 @@
              xmlns:local="clr-namespace:WarehouseManager.Views"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="1000">
-    <Grid>
+    <UserControl.Resources>
+        <ResourceDictionary Source="Themes.xaml"/>
+        
+    </UserControl.Resources>
+    <Grid Background="{StaticResource Background}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="6*" />
-            <ColumnDefinition Width="8*" />
+            <ColumnDefinition Width="310" />
+            <ColumnDefinition Width="7*" />
             <ColumnDefinition Width="220" />
             <ColumnDefinition Width="60" />
             <ColumnDefinition Width="10" />
@@ -30,6 +34,7 @@
 
         <Label Content="NOWY DOKUMENT MAGAZYNOWY"
                Grid.Column="1"
+               Foreground="{StaticResource Dark}"
                Grid.Row="1"
                HorizontalAlignment="Left"
                Margin="0,0,0,0"
@@ -38,17 +43,23 @@
 
         <Label Content="KLIENT"
                Grid.Column="1"
+               Foreground="{StaticResource Dark}"
                HorizontalAlignment="Left"
                Margin="0,0,0,0"
                Grid.Row="2"
                VerticalAlignment="Bottom" />
         <Label Content="NAZWA"
                Grid.Column="1"
+               Foreground="{StaticResource Dark}"
                HorizontalAlignment="Left"
                Margin="20,0,0,0"
                Grid.Row="3"
                VerticalAlignment="Center" />
         <TextBox Grid.Column="1"
+                 Background="{StaticResource Mid}"
+                 Foreground="{StaticResource Dark}"
+                 BorderBrush="{StaticResource Mid}"
+                 FocusVisualStyle="{x:Null}"
                  HorizontalAlignment="Left"
                  Margin="110,3,0,3"
                  Grid.Row="3"
@@ -58,24 +69,36 @@
                  Height="23" />
         <Label Content="POCHODZENIE"
                Grid.Column="1"
+               Foreground="{StaticResource Dark}"
                HorizontalAlignment="Left"
                Margin="20,0,0,0"
                Grid.Row="4"
                VerticalAlignment="Top" />
-        <ComboBox Grid.Column="1" 
-                  HorizontalAlignment="Left" 
-                  Margin="110,3,0,3" 
-                  Grid.Row="4" 
-                  VerticalAlignment="Top" 
-                  Width="190"
-                  Height="23"/>
+        <TextBox Grid.Column="1"
+                 Background="{StaticResource Mid}"
+                 Foreground="{StaticResource Dark}"
+                 BorderBrush="{StaticResource Mid}"
+                 FocusVisualStyle="{x:Null}"
+                 HorizontalAlignment="Left"
+                 Margin="110,3,0,3"
+                 Grid.Row="4"
+                 TextWrapping="NoWrap"
+                 VerticalAlignment="Top"
+                 Width="190"
+                 Height="23" />
+        
         <Label Content="NIP"
                Grid.Column="1"
+               Foreground="{StaticResource Dark}"
                HorizontalAlignment="Left"
                Margin="20,0,0,0"
                Grid.Row="5"
                VerticalAlignment="Center" />
         <TextBox Grid.Column="1"
+                 Background="{StaticResource Mid}"
+                 Foreground="{StaticResource Dark}"
+                 BorderBrush="{StaticResource Mid}"
+                 FocusVisualStyle="{x:Null}"
                  HorizontalAlignment="Left"
                  Margin="110,3,0,3"
                  Grid.Row="5"
@@ -85,7 +108,7 @@
                  Height="23" />
         <Button Grid.Column="1"
                 HorizontalAlignment="Right"
-                Margin="0,0,5,0"
+                Margin="0,0,10,0"
                 Grid.Row="5"
                 VerticalAlignment="Center"
                 Width="34"
@@ -101,12 +124,14 @@
 
         <Label Content="DOKUMENT"
                Grid.Column="3"
+               Foreground="{StaticResource Dark}"
                HorizontalAlignment="Left"
                Margin="0,0,0,0"
                Grid.Row="2"
                VerticalAlignment="Bottom" />
         <Label Content="TYP"
                Grid.Column="3"
+               Foreground="{StaticResource Dark}"
                HorizontalAlignment="Left"
                Margin="20,20,0,0"
                Grid.Row="3"
@@ -119,13 +144,60 @@
                   Grid.RowSpan="2"
                   VerticalAlignment="Top" 
                   Width="145"
-                  Height="23"/>
+                  Height="23">
+            <ComboBox.Resources>
+                <Style TargetType="{x:Type ComboBox}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ComboBox">
+                                <Grid>
+                                    <ToggleButton Grid.Column="2" Focusable="false" IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}" >
+                                        <ToggleButton.Template>
+                                            <ControlTemplate>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="5*" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Border x:Name="Border"  Grid.ColumnSpan="2" CornerRadius="0" Background="{StaticResource Dark}"  />
 
-
+                                                    <Path x:Name="Arrow" Grid.Column="1"  Fill="{StaticResource AccentBlue}" HorizontalAlignment="Center" VerticalAlignment="Center" Data="M 0 0 L 4 4 L 8 0 Z"/>
+                                                </Grid>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="ToggleButton.IsMouseOver" Value="true">
+                                                        <Setter TargetName="Border" Property="Background" Value="{StaticResource Mid}" />
+                                                    </Trigger>
+                                                    <Trigger Property="ToggleButton.IsChecked" Value="true">
+                                                        <Setter TargetName="Border" Property="Background" Value="{StaticResource Mid}" />
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </ToggleButton.Template>
+                                    </ToggleButton>
+                                    <ContentPresenter Name="ContentSite" IsHitTestVisible="False"  Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" Margin="3"  />
+                                    <TextBox x:Name="PART_EditableTextBox" Visibility="Hidden" IsReadOnly="{TemplateBinding IsReadOnly}"/>
+                                    <Popup Name="Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True"  Focusable="False" PopupAnimation="Slide">
+                                        <Grid  Name="DropDown" SnapsToDevicePixels="True" MinWidth="{TemplateBinding ActualWidth}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                            <Border x:Name="DropDownBorder" Background="Blue" />
+                                            <ScrollViewer SnapsToDevicePixels="True">
+                                                <StackPanel IsItemsHost="True" />
+                                            </ScrollViewer>
+                                        </Grid>
+                                    </Popup>
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                    </Style.Triggers>
+                </Style>
+            </ComboBox.Resources>
+        </ComboBox>
 
 
         <Label Content="ELEMENTY"
                Grid.Column="1"
+               Foreground="{StaticResource Dark}"
                HorizontalAlignment="Left"
                Margin="0,5,0,5"
                Grid.Row="6"
@@ -143,9 +215,11 @@
                   GridLinesVisibility="Horizontal"
                   SelectionMode="Single"
                   FontSize="16"
+                  Background="{StaticResource Mid}"
+                  Foreground="{StaticResource Background}"
+                  BorderBrush="Transparent"
                   HeadersVisibility="Column"
                   RowHeight="40">
-
             <!--ItemsSource="{Binding AvalibleElements, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"-->
             <DataGrid.ItemContainerStyle>
                 <Style TargetType="DataGridRow">
@@ -156,6 +230,9 @@
                 </Style>
             </DataGrid.ItemContainerStyle>
             <DataGrid.Resources>
+                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Background" Value="{StaticResource Dark}" />
+                </Style>
                 <Style TargetType="{x:Type CheckBox}"
                        x:Key="DataGridCheckBox">
                     <Setter Property="HorizontalAlignment"
@@ -284,6 +361,8 @@
         </Button>
         <CheckBox Grid.Column="3" 
                   Content="POTWIERDZONY" 
+                  Foreground="{StaticResource Dark}"
+                  Background="{StaticResource Mid}"
                   HorizontalAlignment="Right"
                   FlowDirection="RightToLeft"
                   Margin="0,0,5,0" 
@@ -291,6 +370,7 @@
                   VerticalAlignment="Center"/>
         <Label Content="ADRESY DOSTAW"
                Grid.Column="2"
+               Foreground="{StaticResource Dark}"
                HorizontalAlignment="Left"
                Margin="0,0,0,0"
                Grid.Row="2"
@@ -308,6 +388,9 @@
                   GridLinesVisibility="Horizontal"
                   SelectionMode="Single"
                   FontSize="14"
+                  Background="{StaticResource Mid}"
+                  Foreground="{StaticResource Background}"
+                  BorderBrush="Transparent"
                   HeadersVisibility="Column"
                   RowHeight="30">
             <DataGrid.ItemContainerStyle>
@@ -319,6 +402,9 @@
                 </Style>
             </DataGrid.ItemContainerStyle>
             <DataGrid.Resources>
+                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Background" Value="{StaticResource Dark}" />
+                </Style>
                 <Style TargetType="{x:Type Label}"
                        x:Key="DataGridLabel">
                     <Setter Property="VerticalAlignment"
@@ -393,12 +479,14 @@
         </Button>
         <Label Content="ILOŚĆ PRODUKTÓW"
                Grid.Column="2"
+               Foreground="{StaticResource Dark}"
                HorizontalAlignment="Left"
                Margin="20,3,0,0"
                Grid.Row="8"
                VerticalAlignment="Center" />
         <Label Content="0"
                Grid.Column="2"
+               Foreground="{StaticResource Dark}"
                HorizontalAlignment="Right"
                Margin="0,0,0,0"
                Grid.Row="8"
@@ -406,6 +494,7 @@
                VerticalAlignment="Center" />
         <Label Content="WARTOSC PRODUKTÓW"
                Grid.Column="1"
+               Foreground="{StaticResource Dark}"
                HorizontalAlignment="Left"
                Margin="0,3,0,0"
                FontSize="14"
@@ -414,6 +503,7 @@
                VerticalAlignment="Center" />
         <Label Content="0"
                Grid.Column="1"
+               Foreground="{StaticResource Dark}"
                FontWeight="DemiBold"
                HorizontalAlignment="Right"
                Margin="0,0,0,0"
@@ -422,6 +512,7 @@
                VerticalAlignment="Center" />
         <Label Content="GENERUJ ETYKIETE"
                Grid.Column="3"
+               Foreground="{StaticResource Dark}"
                HorizontalAlignment="Left"
                Margin="20,0,0,0"
                Grid.Row="5"

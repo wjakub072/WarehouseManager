@@ -6,7 +6,10 @@
              xmlns:local="clr-namespace:WarehouseManager.Views"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="1000">
-    <Grid>
+    <UserControl.Resources>
+        <ResourceDictionary Source="Themes.xaml"/>
+    </UserControl.Resources>
+    <Grid Background="{StaticResource Background}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10" />
             <ColumnDefinition Width="7*" />
@@ -23,6 +26,7 @@
 
         <Label Content="DOKUMENTY MAGAZYNOWE"
                Grid.Column="1"
+               Foreground="{StaticResource Dark}"
                Grid.Row="1"
                HorizontalAlignment="Left"
                Margin="0,0,0,0"
@@ -39,6 +43,9 @@
                   RowHeight="40"
                   HeadersVisibility="Column"
                   FontSize="16"
+                  Background="{StaticResource Mid}"
+                  Foreground="{StaticResource Background}"
+                  BorderBrush="Transparent"
                   VerticalAlignment="Stretch"
                   Width="auto"
                   AutoGenerateColumns="False">
@@ -52,7 +59,9 @@
                 </Style>
             </DataGrid.ItemContainerStyle>
             <DataGrid.Resources>
-
+                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Background" Value="{StaticResource Dark}" />
+                </Style>
                 <Style TargetType="{x:Type Label}"
                        x:Key="DataGridLabel">
                     <Setter Property="VerticalAlignment"

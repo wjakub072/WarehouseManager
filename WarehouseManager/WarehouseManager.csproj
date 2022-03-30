@@ -12,10 +12,14 @@
   <ItemGroup>
     <None Remove="Views\Icons\add.ico" />
     <None Remove="Views\Icons\availability.ico" />
+    <None Remove="Views\Icons\closeWindow.ico" />
     <None Remove="Views\Icons\customer.ico" />
     <None Remove="Views\Icons\delivery.ico" />
     <None Remove="Views\Icons\edit.ico" />
     <None Remove="Views\Icons\file.ico" />
+    <None Remove="Views\Icons\maximizeWindow.ico" />
+    <None Remove="Views\Icons\minimalizeWindow.ico" />
+    <None Remove="Views\Icons\minimizeFullWindow.ico" />
     <None Remove="Views\Icons\product.ico" />
     <None Remove="Views\Icons\search.ico" />
     <None Remove="Views\Icons\sticker.ico" />
@@ -24,10 +28,22 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Views\Icons\closeWindow.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Views\Icons\customer.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Views\Icons\file.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Icons\maximizeWindow.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Icons\minimalizeWindow.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Icons\minimizeFullWindow.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Views\Icons\search.ico">

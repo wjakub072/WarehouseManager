@@ -6,7 +6,10 @@
              xmlns:local="clr-namespace:WarehouseManager.Views"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="1000">
-    <Grid>
+    <UserControl.Resources>
+        <ResourceDictionary Source="Themes.xaml"/>
+    </UserControl.Resources>
+    <Grid Background="{StaticResource Background}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10" />
             <ColumnDefinition Width="3*" />
@@ -23,6 +26,7 @@
         </Grid.RowDefinitions>
 
         <Label Content="WYBRANY MAGAZYN"
+               Foreground="{StaticResource Dark}"
                Grid.Column="1"
                Grid.Row="1"
                HorizontalAlignment="Left"
@@ -30,14 +34,16 @@
                VerticalAlignment="Center"
                FontSize="15" />
         <Label Content="WAREHOUSE"
+               Foreground="{StaticResource Dark}"
                Grid.Column="1"
                Grid.Row="1"
                HorizontalAlignment="Left"
                Margin="180,0,0,0"
                VerticalAlignment="Top"
                FontSize="14" />
-        
+
         <Label Content="OPERATOR"
+               Foreground="{StaticResource Dark}"
                Grid.Column="3"
                Grid.Row="1"
                HorizontalAlignment="Left"
@@ -45,14 +51,16 @@
                VerticalAlignment="Center"
                FontSize="15" />
         <Label Content="LOGIN"
+               Foreground="{StaticResource Dark}"
                Grid.Column="3"
                Grid.Row="1"
                HorizontalAlignment="Left"
                Margin="80,0,0,0"
                VerticalAlignment="Top"
                FontSize="14" />
-        
+
         <Label Content="SEKTORY"
+               Foreground="{StaticResource Dark}"
                Grid.Column="1"
                Grid.Row="2"
                HorizontalAlignment="Left"
@@ -71,6 +79,9 @@
                   FontSize="16"
                   VerticalAlignment="Stretch"
                   Width="auto"
+                  Background="{StaticResource Mid}"
+                  Foreground="{StaticResource Background}"
+                  BorderBrush="Transparent"
                   AutoGenerateColumns="False">
             <!--ItemsSource="{Binding Products, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"-->
             <DataGrid.ItemContainerStyle>
@@ -82,7 +93,9 @@
                 </Style>
             </DataGrid.ItemContainerStyle>
             <DataGrid.Resources>
-               
+                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Background" Value="{StaticResource Dark}" />
+                </Style>
                 <Style TargetType="{x:Type Label}"
                        x:Key="DataGridLabel">
                     <Setter Property="VerticalAlignment"
@@ -138,8 +151,8 @@
         
         <Rectangle Grid.Column="0" 
                    Grid.ColumnSpan="5"
-                   Fill="Gray"
-                   Stroke="Gray"
+                   Fill="{StaticResource Dark}"
+                   Stroke="{StaticResource Dark}"
                    HorizontalAlignment="Stretch" 
                    Height="20" 
                    Grid.Row="4"/>
@@ -149,6 +162,7 @@
                HorizontalAlignment="Left"
                Margin="0,0,0,0"
                VerticalAlignment="Bottom"
+               Foreground="{StaticResource AccentBlue}"
                FontSize="8" />
         <Label Content="VER. 0.3"
                Grid.Column="3"
@@ -156,6 +170,7 @@
                HorizontalAlignment="Right"
                Margin="0,0,0,0"
                VerticalAlignment="Bottom"
+               Foreground="{StaticResource AccentBlue}"
                FontSize="8" />
     </Grid>
 </UserControl>

@@ -6,7 +6,10 @@
              xmlns:local="clr-namespace:WarehouseManager.Views"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="1000">
-    <Grid>
+    <UserControl.Resources>
+        <ResourceDictionary Source="Themes.xaml"/>
+    </UserControl.Resources>
+    <Grid Background="{StaticResource Background}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10" />
             <ColumnDefinition Width="*" />
@@ -63,15 +66,21 @@
                HorizontalAlignment="Left"
                Margin="0,0,0,0"
                Grid.Row="1"
+               Foreground="{StaticResource Dark}"
                VerticalAlignment="Bottom" />
         <Label Content="NAZWA"
                Grid.Column="1"
+               Foreground="{StaticResource Dark}"
                HorizontalAlignment="Left"
                Margin="20,0,0,0"
                Grid.Row="2"
                VerticalAlignment="Center" />
         <TextBox Grid.Column="1"
                  HorizontalAlignment="Left"
+                 Background="{StaticResource Mid}"
+                 Foreground="{StaticResource Dark}"
+                 BorderBrush="{StaticResource Mid}"
+                 FocusVisualStyle="{x:Null}"
                  Margin="110,3,0,3"
                  Grid.Row="2"
                  TextWrapping="NoWrap"
@@ -80,6 +89,7 @@
                  Height="23" />
         <Label Content="POCHODZENIE"
                Grid.Column="2"
+               Foreground="{StaticResource Dark}"
                HorizontalAlignment="Left"
                Margin="20,0,0,0"
                Grid.Row="2"
@@ -88,11 +98,15 @@
                   HorizontalAlignment="Left" 
                   Margin="110,3,0,3" 
                   Grid.Row="2" 
+                  Background="{StaticResource Mid}"
+                  Foreground="{StaticResource Dark}"
+                  BorderBrush="{StaticResource Mid}"
                   VerticalAlignment="Top" 
                   Width="190"
                   Height="23"/>
         <Label Content="NIP"
                Grid.Column="1"
+               Foreground="{StaticResource Dark}"
                HorizontalAlignment="Left"
                Margin="20,0,0,0"
                Grid.Row="3"
@@ -100,6 +114,10 @@
         <TextBox Grid.Column="1"
                  HorizontalAlignment="Left"
                  Margin="110,3,0,3"
+                 Background="{StaticResource Mid}"
+                 Foreground="{StaticResource Dark}"
+                 BorderBrush="{StaticResource Mid}"
+                 FocusVisualStyle="{x:Null}"
                  Grid.Row="3"
                  TextWrapping="NoWrap"
                  VerticalAlignment="Center"
@@ -108,6 +126,7 @@
 
         <Label Content="ADRESY"
                Grid.Column="1"
+               Foreground="{StaticResource Dark}"
                Grid.Row="5"
                HorizontalAlignment="Left"
                Margin="50,10,0,0"
@@ -121,6 +140,9 @@
                   Grid.Row="6"
                   CanUserAddRows="False"
                   RowHeight="40"
+                  Background="{StaticResource Mid}"
+                  Foreground="{StaticResource Background}"
+                  BorderBrush="Transparent"
                   HeadersVisibility="Column"
                   FontSize="16"
                   VerticalAlignment="Stretch"
@@ -136,7 +158,9 @@
                 </Style>
             </DataGrid.ItemContainerStyle>
             <DataGrid.Resources>
-
+                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Background" Value="{StaticResource Dark}" />
+                </Style>
                 <Style TargetType="{x:Type Label}"
                        x:Key="DataGridLabel">
                     <Setter Property="VerticalAlignment"

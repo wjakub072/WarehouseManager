@@ -7,22 +7,80 @@
         xmlns:viewModels="clr-namespace:WarehouseManager.ViewModels"
         xmlns:views="clr-namespace:WarehouseManager.Views"
         mc:Ignorable="d"
-        Title="WarehouseManager" Height="600" Width="1000">
+        Title="WarehouseManager" Height="600" Width="1000"
+        WindowStyle="None"
+        Background="#343633"
+        >
+    <Window.Resources>
+        <ResourceDictionary Source="Views/Themes.xaml"/>
+    </Window.Resources>
     <Grid>
-        <Grid.Resources>
-            <DataTemplate DataType="{x:Type viewModels:LoginViewModel}">
-                <views:LoginView/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModels:HomePageViewModel}">
-                <views:HomePageView/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModels:NewDeliveryViewModel}">
-                <views:NewDeliveryView/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModels:CustomerViewModel}">
-                <views:CustomerView/>
-            </DataTemplate>
-        </Grid.Resources>
-        <ContentControl Content="{Binding CurrentViewModel}"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Rectangle Grid.Column="0" 
+                   Fill="{StaticResource Dark}"
+                   Stroke="{StaticResource Dark}"
+                   HorizontalAlignment="Stretch" 
+                   Height="30" 
+                   Grid.Row="0"/>
+        <Label 
+                 Foreground="{StaticResource AccentBlue}"
+                 HorizontalAlignment="Left" 
+                 Grid.Row="0" 
+                 Margin="0,0,0,10"
+                 VerticalAlignment="Center" 
+                Content="WAREHOUSE MANAGER"
+                 FontSize="18"
+            Height="30"/>
+        <Button 
+                HorizontalAlignment="Right"
+                Margin="0,0,29,0"
+                Grid.Row="0"
+                VerticalAlignment="Stretch"
+                Width="30"
+                Command="{Binding NewCustomerCommand}"
+                Background="{x:Null}"
+                BorderBrush="{x:Null}"
+                Foreground="{x:Null}">
+            <Image Source="Views/Icons/minimalizeWindow.ico" 
+                   Width="23" 
+                   Height="23" />
+        </Button>
+        <Button 
+                HorizontalAlignment="Right"
+                Margin="0,0,0,0"
+                Grid.Row="0"
+                VerticalAlignment="Stretch"
+                Width="30"
+                Command="{Binding NewCustomerCommand}"
+                Background="{x:Null}"
+                BorderBrush="{x:Null}"
+                Foreground="{x:Null}">
+            <Image Source="Views/Icons/closeWindow.ico" 
+                   Width="23" 
+                   Height="23" />
+        </Button>
+        
+        
+        <Grid Grid.Row="1">
+            <Grid.Resources>
+                <DataTemplate DataType="{x:Type viewModels:LoginViewModel}">
+                    <views:LoginView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewModels:HomePageViewModel}">
+                    <views:HomePageView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewModels:NewDeliveryViewModel}">
+                    <views:NewDeliveryView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewModels:CustomerViewModel}">
+                    <views:CustomerView/>
+                </DataTemplate>
+            </Grid.Resources>
+            <ContentControl Content="{Binding CurrentViewModel}"/>
+        </Grid>
     </Grid>
 </Window>

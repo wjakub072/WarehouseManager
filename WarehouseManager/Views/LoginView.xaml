@@ -6,8 +6,11 @@
              xmlns:local="clr-namespace:WarehouseManager.Views"
              xmlns:components="clr-namespace:WarehouseManager.Views.Components"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+             d:DesignHeight="600" d:DesignWidth="1000">
+    <UserControl.Resources>
+        <ResourceDictionary Source="Themes.xaml"/>
+    </UserControl.Resources>
+    <Grid Background="{StaticResource Background}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="240" />
@@ -15,6 +18,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="3*" />
+            <RowDefinition Height="140" />
             <RowDefinition Height="70" />
             <RowDefinition Height="50" />
             <RowDefinition Height="50" />
@@ -22,9 +26,17 @@
             <RowDefinition Height="3*" />
         </Grid.RowDefinitions>
 
+        <Rectangle Grid.Row="1"
+                   Grid.RowSpan="5"
+                   Grid.Column="1"
+                   Fill="{StaticResource Dark}"/>
         <TextBox Grid.Column="1" 
+                 Background="{StaticResource Mid}"
+                 Foreground="{StaticResource Dark}"
+                 FocusVisualStyle="{x:Null}"
+                 BorderBrush="Transparent"
                  HorizontalAlignment="Center" 
-                 Grid.Row="1" 
+                 Grid.Row="2" 
                  Margin="0,0,0,10"
                  Text="{Binding WarehouseCode, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                  TextWrapping="NoWrap"
@@ -37,12 +49,15 @@
                HorizontalAlignment="Center" 
                Margin="0,0,60,10" 
                VerticalAlignment="Center" 
-               Grid.Row="1"
-               Foreground="Gray"
+               Grid.Row="2"
+               Foreground="{StaticResource Background}"
                Visibility="{Binding WarehouseHint, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
         <TextBox Grid.Column="1" 
+                 Background="{StaticResource Mid}"
+                 Foreground="{StaticResource Dark}"
+                 BorderBrush="Transparent"
                  HorizontalAlignment="Center" 
-                 Grid.Row="2" 
+                 Grid.Row="3" 
                  Text="{Binding Login, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                  TextWrapping="NoWrap"
                  VerticalAlignment="Center" 
@@ -53,32 +68,35 @@
                Content="Enter Username" 
                HorizontalAlignment="Center" 
                Margin="0,0,60,0" 
-               Grid.Row="2"
-               Foreground="Gray"
+               Grid.Row="3"
+               Foreground="{StaticResource Background}"
                Visibility="{Binding LoginHint, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                VerticalAlignment="Center"/>
         <components:PasswordBox Grid.Column="1" 
-                                        Grid.Row="3"
+                                        Grid.Row="4"
                                         HorizontalAlignment="Center" 
                                         VerticalAlignment="Center" 
                                         Width="160"
-                                        
                                         Height="30"
                                         PasswordProperty="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+        
         <Label Grid.Column="1" 
                Content="Enter Password" 
                HorizontalAlignment="Center" 
                Margin="0,0,60,0" 
-               Grid.Row="3" 
-               Foreground="Gray"
+               Grid.Row="4" 
+               Foreground="{StaticResource Background}"
                Visibility="{Binding LoginHint, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                VerticalAlignment="Center"/>
         <Button Grid.Column="1" 
                 Content="LOGIN" 
+                Background="{StaticResource Mid}"
+                BorderBrush="Transparent"
+                Foreground="{StaticResource AccentOrange}"
                 Height="30"
                 Width="120"
                 HorizontalAlignment="Center" 
-                Grid.Row="4" 
+                Grid.Row="5" 
                 VerticalAlignment="Center"
                 Command="{Binding LoginCommand}"/>
     </Grid>

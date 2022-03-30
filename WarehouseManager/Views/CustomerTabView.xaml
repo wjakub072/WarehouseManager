@@ -6,7 +6,11 @@
              xmlns:local="clr-namespace:WarehouseManager.Views"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="1000">
-    <Grid>
+    <UserControl.Resources>
+        <ResourceDictionary Source="Themes.xaml"/>
+    </UserControl.Resources>
+
+    <Grid Background="{StaticResource Background}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10" />
             <ColumnDefinition Width="3*" />
@@ -27,6 +31,7 @@
                Grid.Row="1"
                HorizontalAlignment="Left"
                Margin="0,0,0,0"
+               Foreground="{StaticResource Dark}"
                VerticalAlignment="Top"
                FontSize="17" />
 
@@ -42,6 +47,9 @@
                   FontSize="16"
                   VerticalAlignment="Stretch"
                   Width="auto"
+                  Background="{StaticResource Mid}"
+                  Foreground="{StaticResource Background}"
+                  BorderBrush="Transparent"
                   AutoGenerateColumns="False">
             <!--ItemsSource="{Binding Products, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"-->
             <DataGrid.ItemContainerStyle>
@@ -53,6 +61,9 @@
                 </Style>
             </DataGrid.ItemContainerStyle>
             <DataGrid.Resources>
+                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Background" Value="{StaticResource Dark}" />
+                </Style>
                 <Style TargetType="{x:Type CheckBox}"
                        x:Key="DataGridCheckBox">
                     <Setter Property="HorizontalAlignment"
@@ -65,6 +76,7 @@
                             Value="4" />
                     <Setter Property="VerticalContentAlignment"
                             Value="Center" />
+                    
                 </Style>
                 <Style TargetType="{x:Type Label}"
                        x:Key="DataGridLabel">
