@@ -1,6 +1,9 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Windows;
+using WarehouseManager.Data;
 using WarehouseManager.Services;
 using WarehouseManager.Stores;
 using WarehouseManager.ViewModels;
@@ -16,7 +19,10 @@ namespace WarehouseManager
             _host = Host.CreateDefaultBuilder()
                 .ConfigureServices((context, services) =>
                 {
-                    //dbcontext here
+                    services.AddDbContext<ApplicationDatabaseContext>(options =>
+                    {
+                        options.UseSqlServer(context.Configuration.GetConnectionString("DatabaseServer"));
+                    });
                     ConfigureServices(services);
                 })
                 .Build();
