@@ -326,31 +326,31 @@
             <DataGrid.Columns>
                 <DataGridTemplateColumn  Width="*"
                                          Header="KRAJ"
-                                         SortMemberPath="Name">
+                                         SortMemberPath="Country">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Label Style="{StaticResource DataGridLabel}"
-                                   Content="{Binding Name}" />
+                                   Content="{Binding Country}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn  Width="2*"
                                          Header="MIEJSCOWOŚĆ"
-                                         SortMemberPath="Name">
+                                         SortMemberPath="City">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Label Style="{StaticResource DataGridLabel}"
-                                   Content="{Binding Name}" />
+                                   Content="{Binding City}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn  Width="*"
                                          Header="KOD POCZTOWY"
-                                         SortMemberPath="Name">
+                                         SortMemberPath="PostalCode">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Label Style="{StaticResource DataGridLabel}"
-                                   Content="{Binding Name}" />
+                                   Content="{Binding PostalCode}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

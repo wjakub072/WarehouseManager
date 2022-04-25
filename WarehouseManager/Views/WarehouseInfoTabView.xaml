@@ -33,7 +33,7 @@
                Margin="0,0,0,0"
                VerticalAlignment="Center"
                FontSize="15" />
-        <Label Content="WAREHOUSE"
+        <Label Content="{Binding Warehouse}"
                Foreground="{StaticResource Dark}"
                Grid.Column="1"
                Grid.Row="1"
@@ -50,7 +50,7 @@
                Margin="0,0,0,0"
                VerticalAlignment="Center"
                FontSize="15" />
-        <Label Content="LOGIN"
+        <Label Content="{Binding Operator}"
                Foreground="{StaticResource Dark}"
                Grid.Column="3"
                Grid.Row="1"
@@ -82,8 +82,8 @@
                   Background="{StaticResource Mid}"
                   Foreground="{StaticResource Background}"
                   BorderBrush="Transparent"
-                  AutoGenerateColumns="False">
-            <!--ItemsSource="{Binding Products, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"-->
+                  AutoGenerateColumns="False"
+                  ItemsSource="{Binding Sectors, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
             <DataGrid.ItemContainerStyle>
                 <Style TargetType="DataGridRow">
                     <Setter Property="HorizontalContentAlignment"
@@ -107,11 +107,11 @@
             <DataGrid.Columns>
                 <DataGridTemplateColumn  Width="*"
                                          Header="KOD SEKTORA"
-                                         SortMemberPath="Name">
+                                         SortMemberPath="Code">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Label Style="{StaticResource DataGridLabel}"
-                                   Content="{Binding Name}" />
+                                   Content="{Binding Code}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -127,21 +127,21 @@
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn  Width="*"
                                          Header="ZAŁADOWANIE"
-                                         SortMemberPath="Name">
+                                         SortMemberPath="Used">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Label Style="{StaticResource DataGridLabel}"
-                                   Content="{Binding Name}" />
+                                   Content="{Binding Used}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn  Width="2*"
                                          Header="DOMINUJĄ MATERIAŁY KLIENTA"
-                                         SortMemberPath="InitDate">
+                                         SortMemberPath="Mostly">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Label Style="{StaticResource DataGridLabel}"
-                                   Content="{Binding Price}" />
+                                   Content="{Binding Mostly}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
