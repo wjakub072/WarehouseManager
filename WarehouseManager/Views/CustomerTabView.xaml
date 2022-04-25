@@ -50,8 +50,9 @@
                   Background="{StaticResource Mid}"
                   Foreground="{StaticResource Background}"
                   BorderBrush="Transparent"
-                  AutoGenerateColumns="False">
-            <!--ItemsSource="{Binding Products, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"-->
+                  AutoGenerateColumns="False"
+                  SelectedItem="{Binding Customers, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                  ItemsSource="{Binding Customers, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
             <DataGrid.ItemContainerStyle>
                 <Style TargetType="DataGridRow">
                     <Setter Property="HorizontalContentAlignment"
@@ -64,20 +65,7 @@
                 <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
                     <Setter Property="Background" Value="{StaticResource Dark}" />
                 </Style>
-                <Style TargetType="{x:Type CheckBox}"
-                       x:Key="DataGridCheckBox">
-                    <Setter Property="HorizontalAlignment"
-                            Value="Center" />
-                    <Setter Property="HorizontalContentAlignment"
-                            Value="Center" />
-                    <Setter Property="VerticalAlignment"
-                            Value="Center" />
-                    <Setter Property="Margin"
-                            Value="4" />
-                    <Setter Property="VerticalContentAlignment"
-                            Value="Center" />
-                    
-                </Style>
+                
                 <Style TargetType="{x:Type Label}"
                        x:Key="DataGridLabel">
                     <Setter Property="VerticalAlignment"
@@ -87,14 +75,6 @@
                 </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
-                <DataGridTemplateColumn Width="30">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <CheckBox Style="{StaticResource DataGridCheckBox}"
-                                      IsChecked="{Binding Selected, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
                 <DataGridTemplateColumn  Width="2*"
                                          Header="NAZWA"
                                          SortMemberPath="Name">
@@ -107,21 +87,21 @@
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn  Width="*"
                                          Header="POCHODZENIE"
-                                         SortMemberPath="InitDate">
+                                         SortMemberPath="Origin">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Label Style="{StaticResource DataGridLabel}"
-                                   Content="{Binding Unit}" />
+                                   Content="{Binding Origin}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn  Width="2*"
                                          Header="NIP"
-                                         SortMemberPath="InitDate">
+                                         SortMemberPath="NIP">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Label Style="{StaticResource DataGridLabel}"
-                                   Content="{Binding Price}" />
+                                   Content="{Binding NIP}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
