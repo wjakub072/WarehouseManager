@@ -48,8 +48,8 @@
                   Background="{StaticResource Mid}"
                   Foreground="{StaticResource Background}"
                   BorderBrush="Transparent"
-                  AutoGenerateColumns="False">
-            <!--ItemsSource="{Binding Products, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"-->
+                  AutoGenerateColumns="False"
+                  ItemsSource="{Binding Availabilities, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
             <DataGrid.ItemContainerStyle>
                 <Style TargetType="DataGridRow">
                     <Setter Property="HorizontalContentAlignment"
@@ -71,34 +71,28 @@
                 </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
-                <DataGridTemplateColumn  Width="30">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Label Style="{StaticResource DataGridLabel}"
-                                   Content="{Binding OrdinaryNumber}" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
                 <DataGridTemplateColumn  Width="2*"
-                                         Header="PRODUKT"
-                                         SortMemberPath="Name">
+                                         Header="KOD"
+                                         SortMemberPath="SerialCode">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Label Style="{StaticResource DataGridLabel}"
-                                   Content="{Binding Name}" />
+                                   Content="{Binding SerialCode}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn  Width="100"
-                                         Header="JEDNOSTKA"
-                                         SortMemberPath="Unit">
+                
+                <DataGridTemplateColumn  Width="3*"
+                                         Header="KLIENT"
+                                         SortMemberPath="CustomerName">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Label Style="{StaticResource DataGridLabel}"
-                                   Content="{Binding Unit}" />
+                                   Content="{Binding CustomerName}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                
                 <DataGridTemplateColumn  Width="2*"
                                          Header="ILOŚĆ"
                                          SortMemberPath="Amount">
@@ -109,13 +103,14 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn  Width="2*"
-                                         Header="WARTOŚĆ"
-                                         SortMemberPath="Value">
+                
+                <DataGridTemplateColumn  Width="200"
+                                         Header="JEDNOSTKA"
+                                         SortMemberPath="Packing">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Label Style="{StaticResource DataGridLabel}"
-                                   Content="{Binding Value}" />
+                                   Content="{Binding Packing}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
