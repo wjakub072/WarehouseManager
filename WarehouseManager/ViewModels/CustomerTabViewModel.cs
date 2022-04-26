@@ -44,7 +44,7 @@ namespace WarehouseManager.ViewModels
         public ICommand EditCustomerCommand { get; set; }
         public ICommand DeleteCustomerCommand { get; set; }
 
-        private ICommand initializeCommand;
+        public LoadCustomersListCommand InitializeCommand { get; }
 
         public CustomerTabViewModel(INavigationService customerNavigationService, CustomerStore customerStore)
         {
@@ -53,8 +53,8 @@ namespace WarehouseManager.ViewModels
             DeleteCustomerCommand = new DeleteCustomerCommand(customerStore, this);
 
 
-            initializeCommand = new LoadCustomersListCommand(customerStore, this);
-            initializeCommand.Execute(null);
+            InitializeCommand = new LoadCustomersListCommand(customerStore, this);
+            //InitializeCommand.Execute(null);
 
             _customerStore = customerStore;
         }

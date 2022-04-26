@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WarehouseManager.Models
 {
+    [Table("Warehouses", Schema = "WM")]
     internal class Warehouse
     {
         [Key]

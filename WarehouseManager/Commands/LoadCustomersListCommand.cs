@@ -21,7 +21,7 @@ namespace WarehouseManager.Commands
 
         public override async Task ExecuteAsync(object parameter)
         {
-            await _customerStore.Load().ConfigureAwait(true);
+            await _customerStore.Load();
 
             //_viewModel.Customers = new System.Collections.ObjectModel.ObservableCollection<Models.Customer>(_customerStore.Customers);
             _viewModel.Customers.Clear();

@@ -14,6 +14,7 @@
         <TabControl TabStripPlacement="Left"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
+                    SelectedIndex="{Binding SelectedIndex}"
                     Background="{StaticResource Background}"
                     BorderBrush="{StaticResource Background}">
             <TabControl.Resources>

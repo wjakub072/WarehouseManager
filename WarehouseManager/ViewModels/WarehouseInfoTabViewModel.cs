@@ -11,38 +11,29 @@ namespace WarehouseManager.ViewModels
 {
     internal class WarehouseInfoTabViewModel : ViewModelBase
     {
-        private string _warehouse;
+        public string Warehouse => _store.Warehouse;
 
-        public string Warehouse
+        public string Operator => _store.Operator;
+
+        private ObservableCollection<Sector> _sectors = new ObservableCollection<Sector>();
+
+        public ObservableCollection<Sector> Sectors
         {
-            get { return _warehouse; }
-            set { _warehouse = value; }
+            get { return _sectors; }
+            set { _sectors = value; }
         }
 
-        private string _operator;
-
-        public string Operator
-        {
-            get { return _operator; }
-            set { _operator = value; }
-        }
-
-        public IEnumerable<Sector> Sectors => _store.Sectors;
-
-
-        private readonly ApplicationDatabaseContext _db;
         private readonly SectorStore _store;
 
-        private ICommand initializeCommand;
+        public LoadSectorsCommand InitializeCommand { get; }
 
-        public WarehouseInfoTabViewModel(ApplicationDatabaseContext db, SectorStore sectorStore)
+        public WarehouseInfoTabViewModel(SectorStore sectorStore)
         {
-            _db = db;
             _store = sectorStore;
 
-            initializeCommand = new LoadingCommand(sectorStore);
-           
+            InitializeCommand = new LoadSectorsCommand(sectorStore, this);
 
+            //InitializeCommand.Execute(null);
         }
     }
 }
