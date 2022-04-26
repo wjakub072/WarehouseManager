@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using WarehouseManager.Commands;
 using WarehouseManager.Models;
@@ -9,6 +10,7 @@ namespace WarehouseManager.ViewModels
 {
     internal class CustomerViewModel : ViewModelBase
     {
+        #region Binding Props
         private string _name;
 
         public string Name
@@ -89,26 +91,45 @@ namespace WarehouseManager.ViewModels
             set { _asDelivery = value; }
         }
 
-        public List<string> Origin = new List<string>() { "Krajowy", "Unijny", "Pozaunijny" };
+        private List<string> _origin = new List<string>() { "Krajowy", "Unijny", "Pozaunijny" };
+
+        public List<string> Origin
+        {
+            get { return _origin; }
+            set { _origin = value; }
+        }
+        #endregion
 
         public ICommand HomePageNavCommand { get; set; }
         public ICommand SaveAndNavCommand { get; set; }
         public ICommand AddAddressCommand { get; set; }
         public ICommand DeleteAddressCommand { get; set; }
+        private ICommand initializeCommand;
+
 
         private readonly AddressStore _addressStore;
 
-        public IEnumerable<Address> Addresses => _addressStore.Addresses;
+        //public IEnumerable<Address> Addresses => _addressStore.Addresses;
+        private ObservableCollection<Address> _addresses;
+
+        public ObservableCollection<Address> Addresses
+        {
+            get { return _addresses; }
+            set { _addresses = value; }
+        }
+
 
         public CustomerViewModel(INavigationService homeNavigationService, AddressStore addressStore)
         {
             _addressStore = addressStore;
+            initializeCommand = new LoadAddressesCommand(addressStore, this);
 
             HomePageNavCommand = new NavCommand(homeNavigationService);
 
-            AddAddressCommand = new AddAddressCommand(_addressStore);
+            AddAddressCommand = new AddAddressCommand(_addressStore, this);
             DeleteAddressCommand = new DeleteAddressCommand(_addressStore);
-
+            //if new customer just make new 
+            _addresses = new ObservableCollection<Address>();
         }
     }
 }

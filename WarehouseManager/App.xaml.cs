@@ -30,8 +30,14 @@ namespace WarehouseManager
 
         private void ConfigureServices(IServiceCollection services)
         {
-            //services here
+            //stores
             services.AddSingleton<NavigationStore>();
+            services.AddSingleton<CustomerStore>();
+            services.AddSingleton<AddressStore>();
+            services.AddSingleton<AvailabilityStore>();
+            services.AddSingleton<SectorStore>();
+
+            //viewModels
             services.AddSingleton<MainViewModel>();
             services.AddSingleton<MainWindow>(m => new MainWindow()
             {
@@ -40,8 +46,10 @@ namespace WarehouseManager
 
             services.AddTransient<HomePageViewModel>();
 
-            services.AddTransient<CustomerViewModel>(d => new CustomerViewModel(HomeNavigation()));
-            services.AddTransient<CustomerTabViewModel>(d => new CustomerTabViewModel(NewCustomerNavigation()));
+            services.AddTransient<CustomerViewModel>(d => new CustomerViewModel(HomeNavigation(),
+                _host.Services.GetRequiredService<AddressStore>()));
+            services.AddTransient<CustomerTabViewModel>(d => new CustomerTabViewModel(NewCustomerNavigation(),
+                _host.Services.GetRequiredService<CustomerStore>()));
             services.AddTransient<AvailabilityViewModel>();
             services.AddTransient<WarehouseInfoTabViewModel>();
 

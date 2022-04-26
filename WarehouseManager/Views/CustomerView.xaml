@@ -296,31 +296,49 @@
                   RowHeight="40"
                   Background="{StaticResource Mid}"
                   Foreground="{StaticResource Background}"
+                  
                   BorderBrush="Transparent"
                   HeadersVisibility="Column"
                   FontSize="16"
                   VerticalAlignment="Stretch"
                   Width="auto"
                   AutoGenerateColumns="False"
-                  ItemsSource="{Binding Products, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                  ItemsSource="{Binding Addresses, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
             <DataGrid.ItemContainerStyle>
                 <Style TargetType="DataGridRow">
                     <Setter Property="HorizontalContentAlignment"
                             Value="Stretch" />
                     <Setter Property="VerticalContentAlignment"
                             Value="Stretch" />
+                    <Style.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" 
+                                 Color="Transparent"/>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                                 Color="Transparent"/>
+                    </Style.Resources>
                 </Style>
             </DataGrid.ItemContainerStyle>
             <DataGrid.Resources>
                 <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
                     <Setter Property="Background" Value="{StaticResource Dark}" />
                 </Style>
-                <Style TargetType="{x:Type Label}"
-                       x:Key="DataGridLabel">
+                
+                <Style TargetType="{x:Type TextBox}"
+                       x:Key="DataGridTextBox">
+                    <Setter Property="HorizontalAlignment"
+                            Value="Stretch" />
+                    <Setter Property="HorizontalContentAlignment"
+                            Value="Right" />
                     <Setter Property="VerticalAlignment"
-                            Value="Center" />
+                            Value="Stretch" />
                     <Setter Property="VerticalContentAlignment"
                             Value="Center" />
+                    <Setter Property="Background"
+                            Value="{StaticResource Mid}"/>
+                    <Setter Property="BorderBrush"
+                            Value="{StaticResource Dark}"/>
+                    <Setter Property="IsInactiveSelectionHighlightEnabled"
+                            Value="False"/>
                 </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
@@ -329,8 +347,9 @@
                                          SortMemberPath="Country">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Label Style="{StaticResource DataGridLabel}"
-                                   Content="{Binding Country}" />
+                            <TextBox Style="{StaticResource DataGridTextBox}"
+                                     Text="{Binding Country, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                     />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -339,8 +358,9 @@
                                          SortMemberPath="City">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Label Style="{StaticResource DataGridLabel}"
-                                   Content="{Binding City}" />
+                            <TextBox Style="{StaticResource DataGridTextBox}"
+                                     Text="{Binding City, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                     />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -349,18 +369,31 @@
                                          SortMemberPath="PostalCode">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Label Style="{StaticResource DataGridLabel}"
-                                   Content="{Binding PostalCode}" />
+                            <TextBox Style="{StaticResource DataGridTextBox}"
+                                     Text="{Binding PostalCode, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                     />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn  Width="2*"
-                                         Header="ADRES"
-                                         SortMemberPath="InitDate">
+                                         Header="ULICA"
+                                         SortMemberPath="Street">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Label Style="{StaticResource DataGridLabel}"
-                                   Content="{Binding Price}" />
+                            <TextBox Style="{StaticResource DataGridTextBox}"
+                                     Text="{Binding Street, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                     />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn  Width="100"
+                                         Header="NUMER"
+                                         SortMemberPath="Building">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Style="{StaticResource DataGridTextBox}"
+                                     Text="{Binding Building, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                     />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -375,7 +408,7 @@
                 VerticalAlignment="Bottom"
                 Width="45"
                 Height="45"
-                Command="{Binding NewDeliveryNavCommand}"
+                Command="{Binding AddAddressCommand}"
                 Background="{x:Null}"
                 BorderBrush="{x:Null}"
                 Foreground="{x:Null}">
@@ -394,7 +427,7 @@
                 Background="{x:Null}"
                 BorderBrush="{x:Null}"
                 Foreground="{x:Null}"
-                >
+                Command="{Binding DeleteAddressCommand}">
             <Image Source="Icons/trash.ico"
                    Width="42"
                    Height="41" />

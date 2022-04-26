@@ -1,7 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
+using WarehouseManager.Commands;
 using WarehouseManager.Data;
 using WarehouseManager.Models;
+using WarehouseManager.Stores;
 
 namespace WarehouseManager.ViewModels
 {
@@ -23,22 +27,22 @@ namespace WarehouseManager.ViewModels
             set { _operator = value; }
         }
 
-        private ObservableCollection<Sector> _sectors;
-
-        public ObservableCollection<Sector> Sectors
-        {
-            get { return _sectors; }
-            set { _sectors = value; }
-        }
+        public IEnumerable<Sector> Sectors => _store.Sectors;
 
 
         private readonly ApplicationDatabaseContext _db;
+        private readonly SectorStore _store;
 
-        public WarehouseInfoTabViewModel(ApplicationDatabaseContext db)
+        private ICommand initializeCommand;
+
+        public WarehouseInfoTabViewModel(ApplicationDatabaseContext db, SectorStore sectorStore)
         {
             _db = db;
+            _store = sectorStore;
 
-            _sectors = new ObservableCollection<Sector>((System.Collections.Generic.IEnumerable<Sector>)_db.Sectors.ToListAsync());
+            initializeCommand = new LoadingCommand(sectorStore);
+           
+
         }
     }
 }

@@ -12,7 +12,24 @@ namespace WarehouseManager.ViewModels
         private readonly CustomerStore _customerStore;
 
         public IEnumerable<Customer> Customers => _customerStore.Customers;
-        public Customer SelectedCustomer => _customerStore.SelectedCustomer;
+        public Customer SelectedCustomer
+        {
+            get => _customerStore.SelectedCustomer;
+            set => _customerStore.SelectedCustomer = value;
+        }
+
+        private string _importStatus;
+
+        public string ImportStatus
+        {
+            get { return _importStatus; }
+            set 
+            { 
+                _importStatus = value; 
+            OnPropertyChanged(nameof(ImportStatus));
+            }
+        }
+
 
         public ICommand NewCustomerCommand { get; set; }
         public ICommand EditCustomerCommand { get; set; }
@@ -26,7 +43,7 @@ namespace WarehouseManager.ViewModels
             _customerStore = customerStore;
 
             initializeCommand = new LoadingCommand(_customerStore);
-            initializeCommand.Execute(null);
+            //initializeCommand.Execute(null);
         }
     }
 }

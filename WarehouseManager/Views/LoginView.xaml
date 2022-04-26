@@ -86,7 +86,7 @@
                Margin="0,0,60,0" 
                Grid.Row="4" 
                Foreground="{StaticResource Background}"
-               Visibility="{Binding LoginHint, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+               Visibility="{Binding PasswordHint, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                VerticalAlignment="Center"/>
         <Button Grid.Column="1" 
                 Content="LOGIN" 

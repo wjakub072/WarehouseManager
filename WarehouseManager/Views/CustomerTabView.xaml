@@ -51,8 +51,8 @@
                   Foreground="{StaticResource Background}"
                   BorderBrush="Transparent"
                   AutoGenerateColumns="False"
-                  SelectedItem="{Binding Customers, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                  ItemsSource="{Binding Customers, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                  SelectedItem="{Binding SelectedCustomer, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                  ItemsSource="{Binding Customers, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
             <DataGrid.ItemContainerStyle>
                 <Style TargetType="DataGridRow">
                     <Setter Property="HorizontalContentAlignment"

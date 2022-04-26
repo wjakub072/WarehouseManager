@@ -12,6 +12,18 @@ namespace WarehouseManager.ViewModels
 
         public IEnumerable<Availability> Availabilities => _availabilityStore.Availabilities;
 
+        private string _importStatus;
+
+        public string ImportStatus
+        {
+            get { return _importStatus; }
+            set
+            {
+                _importStatus = value;
+                OnPropertyChanged(nameof(ImportStatus));
+            }
+        }
+
         private ICommand initializeCommand;
 
         public AvailabilityViewModel(AvailabilityStore availabilityStore)
@@ -20,7 +32,7 @@ namespace WarehouseManager.ViewModels
             //assign which store to load through parameter
             initializeCommand = new LoadingCommand(_availabilityStore);
             //execute async command
-            initializeCommand.Execute(null);
+            //initializeCommand.Execute(null);
         }
     }
 }

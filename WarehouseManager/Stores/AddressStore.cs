@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using WarehouseManager.Data;
 using WarehouseManager.Models;
+using WarehouseManager.ViewModels;
 
 namespace WarehouseManager.Stores
 {
@@ -15,7 +17,7 @@ namespace WarehouseManager.Stores
             _db = db;
         }
 
-        private List<Address> _addresses;
+        private List<Address> _addresses = new List<Address>(); // temporary
         public IEnumerable<Address> Addresses { get => _addresses; }
 
         public Address SelectedAddress { get; set; }

@@ -49,7 +49,7 @@
                   Foreground="{StaticResource Background}"
                   BorderBrush="Transparent"
                   AutoGenerateColumns="False"
-                  ItemsSource="{Binding Availabilities, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                  ItemsSource="{Binding Availabilities, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
             <DataGrid.ItemContainerStyle>
                 <Style TargetType="DataGridRow">
                     <Setter Property="HorizontalContentAlignment"
