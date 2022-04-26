@@ -40,6 +40,7 @@ namespace WarehouseManager.ViewModels
         public CustomerTabViewModel(INavigationService customerNavigationService, CustomerStore customerStore)
         {
             NewCustomerCommand = new NavCommand(customerNavigationService);
+
             _customerStore = customerStore;
 
             initializeCommand = new LoadingCommand(_customerStore);

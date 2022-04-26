@@ -39,12 +39,17 @@ namespace WarehouseManager.Stores
             _addresses.Add(address);
         }
 
-        // edit through new view
-
-
-
-        public async Task Save()
+        public async Task SaveRangeToDatabase(int customerId)
         {
+            var unsaved = Addresses.Where(a => a.Address_Id == 0 && a.CustomerId == 0).ToList();
+
+            foreach (var address in unsaved)
+            {
+                address.CustomerId = customerId;
+            }
+
+            _db.Addresses.AddRange(unsaved);
+
             await _db.SaveChangesAsync();
         }
     }

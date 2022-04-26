@@ -98,6 +98,19 @@ namespace WarehouseManager.ViewModels
             get { return _origin; }
             set { _origin = value; }
         }
+
+        private string _selectedOrigin;
+
+        public string SelectedOrigin
+        {
+            get { return _selectedOrigin; }
+            set 
+            { 
+                _selectedOrigin = value; 
+                OnPropertyChanged(nameof(SelectedOrigin));
+            }
+        }
+
         #endregion
 
         public ICommand HomePageNavCommand { get; set; }
@@ -109,7 +122,6 @@ namespace WarehouseManager.ViewModels
 
         private readonly AddressStore _addressStore;
 
-        //public IEnumerable<Address> Addresses => _addressStore.Addresses;
         private ObservableCollection<Address> _addresses;
 
         public ObservableCollection<Address> Addresses
@@ -118,8 +130,14 @@ namespace WarehouseManager.ViewModels
             set { _addresses = value; }
         }
 
+        public Address SelectedAddress
+        {
+            get => _addressStore.SelectedAddress;
+            set { _addressStore.SelectedAddress = value; }
+        }
 
-        public CustomerViewModel(INavigationService homeNavigationService, AddressStore addressStore)
+        public CustomerViewModel(INavigationService homeNavigationService, CustomerStore customerStore,
+            AddressStore addressStore)
         {
             _addressStore = addressStore;
             initializeCommand = new LoadAddressesCommand(addressStore, this);
@@ -127,9 +145,14 @@ namespace WarehouseManager.ViewModels
             HomePageNavCommand = new NavCommand(homeNavigationService);
 
             AddAddressCommand = new AddAddressCommand(_addressStore, this);
-            DeleteAddressCommand = new DeleteAddressCommand(_addressStore);
+            DeleteAddressCommand = new DeleteAddressCommand(_addressStore, this);
             //if new customer just make new 
-            _addresses = new ObservableCollection<Address>();
+            if (customerStore.SelectedCustomer == null)
+            {
+                _addresses = new ObservableCollection<Address>();
+            }
+
+            SaveAndNavCommand = new SaveCustomerCommand(homeNavigationService, customerStore, addressStore, this);
         }
     }
 }

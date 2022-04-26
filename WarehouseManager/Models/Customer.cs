@@ -12,5 +12,10 @@ namespace WarehouseManager.Models
         public string Name { get; set; }
         public string NIP { get; set; }
         public string Origin { get; set; }
+        public string Country { get; set; }
+        public string City { get; set; }
+        public string PostalCode { get; set; }
+        public string Street { get; set; }
+        public string Building { get; set; }
     }
 }

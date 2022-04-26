@@ -32,9 +32,12 @@ namespace WarehouseManager.Stores
         }
 
         // add through new view 
-        public void AddCustomer(Customer customer)
+        public async Task AddCustomer(Customer customer)
         {
             _customers.Add(customer);
+
+            _db.Customers.Add(customer);
+            await _db.SaveChangesAsync();
         }
 
         // edit through new view

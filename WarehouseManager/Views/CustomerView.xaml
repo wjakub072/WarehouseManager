@@ -208,6 +208,7 @@
                   VerticalAlignment="Top" 
                   Width="190"
                   Height="23"
+                  SelectedItem="{Binding SelectedOrigin}"
                   ItemsSource="{Binding Origin}">
             <ComboBox.Resources>
                 <Style TargetType="{x:Type ComboBox}">
@@ -303,6 +304,7 @@
                   VerticalAlignment="Stretch"
                   Width="auto"
                   AutoGenerateColumns="False"
+                  SelectedItem="{Binding SelectedAddress, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                   ItemsSource="{Binding Addresses, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
             <DataGrid.ItemContainerStyle>
                 <Style TargetType="DataGridRow">
