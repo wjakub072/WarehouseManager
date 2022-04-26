@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ namespace WarehouseManager.Models
 {
     internal class Customer
     {
+        [Key]
         public int Customer_Id { get; set; }
         public string Name { get; set; }
         public string NIP { get; set; }

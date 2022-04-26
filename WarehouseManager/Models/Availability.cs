@@ -1,5 +1,8 @@
-﻿namespace WarehouseManager.Models
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace WarehouseManager.Models
 {
+    [Keyless]
     internal class Availability // later map to procedure result
     {
         public string CustomerName { get; set; }

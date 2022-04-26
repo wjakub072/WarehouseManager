@@ -1,7 +1,10 @@
-﻿namespace WarehouseManager.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace WarehouseManager.Models
 {
     internal class Element
     {
+        [Key]
         public int ELement_Id { get; set; }
         public int DeliveryId { get; set; }
         public int PackageId { get; set; }

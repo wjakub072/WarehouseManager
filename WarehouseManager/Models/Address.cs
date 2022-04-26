@@ -1,7 +1,10 @@
-﻿namespace WarehouseManager.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace WarehouseManager.Models
 {
     internal class Address
     {
+        [Key]
         public int Address_Id { get; set; }
         public int CustomerId { get; set; }
         public string Name { get; set; }
