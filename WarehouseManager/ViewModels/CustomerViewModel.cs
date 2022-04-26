@@ -117,12 +117,13 @@ namespace WarehouseManager.ViewModels
         public ICommand SaveAndNavCommand { get; set; }
         public ICommand AddAddressCommand { get; set; }
         public ICommand DeleteAddressCommand { get; set; }
+
         private ICommand initializeCommand;
 
 
         private readonly AddressStore _addressStore;
 
-        private ObservableCollection<Address> _addresses;
+        private ObservableCollection<Address> _addresses = new System.Collections.ObjectModel.ObservableCollection<Address>();
 
         public ObservableCollection<Address> Addresses
         {
@@ -140,16 +141,20 @@ namespace WarehouseManager.ViewModels
             AddressStore addressStore)
         {
             _addressStore = addressStore;
-            initializeCommand = new LoadAddressesCommand(addressStore, this);
+            initializeCommand = new LoadCustomerCommand(customerStore, addressStore, this);
 
-            HomePageNavCommand = new NavCommand(homeNavigationService);
+            HomePageNavCommand = new HomeNavCommand(homeNavigationService, customerStore);
 
             AddAddressCommand = new AddAddressCommand(_addressStore, this);
             DeleteAddressCommand = new DeleteAddressCommand(_addressStore, this);
+
             //if new customer just make new 
-            if (customerStore.SelectedCustomer == null)
+            if (customerStore.EditingMode == false)
             {
                 _addresses = new ObservableCollection<Address>();
+            } else
+            {
+                initializeCommand.Execute(null);
             }
 
             SaveAndNavCommand = new SaveCustomerCommand(homeNavigationService, customerStore, addressStore, this);

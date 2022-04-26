@@ -24,35 +24,50 @@ namespace WarehouseManager.Commands
 
         public override async Task ExecuteAsync(object parameter)
         {
-            Customer customer = new Customer();
-            customer.Name = _viewModel.Name;
-            customer.NIP = _viewModel.NIP;
-            customer.Origin = _viewModel.SelectedOrigin;
-            customer.Country = _viewModel.Country;
-            customer.City = _viewModel.City;
-            customer.PostalCode = _viewModel.PostalCode;
-            var split = _viewModel.Street.Split(" ");
-            customer.Street = split[0];
-            customer.Building = split[1];
-            
-            await _customerStore.AddCustomer(customer);
-
-            if (_viewModel.AsDelivery)
+            if (_customerStore.EditingMode)
             {
-                Address main = new Address();
-                main.CustomerId = customer.Customer_Id;
-                main.Country = _viewModel.Country;
-                main.City = _viewModel.City;
-                main.PostalCode = _viewModel.PostalCode;
-                main.Street = split[0];
-                main.Building = split[1];
+                Customer customer = _customerStore.SelectedCustomer;
 
-                _addressStore.AddAddress(main);
+                await _addressStore.DeleteAddresses();
+
+                await _addressStore.SaveRangeToDatabase(customer.Customer_Id).ConfigureAwait(false);
+
+                _customerStore.EditingMode = false;
+                _viewModelNavigation.Navigate();
             }
+            else
+            {
+                Customer customer = new Customer();
+                customer.Name = _viewModel.Name;
+                customer.NIP = _viewModel.NIP;
+                customer.Origin = _viewModel.SelectedOrigin;
+                customer.Country = _viewModel.Country;
+                customer.City = _viewModel.City;
+                customer.PostalCode = _viewModel.PostalCode;
+                var split = _viewModel.Street.Split(" ");
+                customer.Street = split[0];
+                customer.Building = split[1];
+                customer.Status = 1;
 
-            await _addressStore.SaveRangeToDatabase(customer.Customer_Id).ConfigureAwait(false);
+                await _customerStore.AddCustomer(customer);
 
-            _viewModelNavigation.Navigate();
+                if (_viewModel.AsDelivery)
+                {
+                    Address main = new Address();
+                    main.CustomerId = customer.Customer_Id;
+                    main.Country = _viewModel.Country;
+                    main.City = _viewModel.City;
+                    main.PostalCode = _viewModel.PostalCode;
+                    main.Street = split[0];
+                    main.Building = split[1];
+
+                    _addressStore.AddAddress(main);
+                }
+
+                await _addressStore.SaveRangeToDatabase(customer.Customer_Id).ConfigureAwait(false);
+
+                _viewModelNavigation.Navigate();
+            }
         }
     }
 }

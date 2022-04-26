@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace WarehouseManager.Commands
 {
@@ -33,6 +34,15 @@ namespace WarehouseManager.Commands
             try
             {
                 await ExecuteAsync(parameter);
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+                if (ex.InnerException != null)
+                {
+                    message += "\n" + ex.InnerException.Message;
+                }
+                MessageBox.Show(message);
             }
             finally
             {

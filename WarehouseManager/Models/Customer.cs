@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace WarehouseManager.Models
 {
+    [Table("Customers", Schema ="WM")]
     internal class Customer
     {
         [Key]
@@ -19,5 +21,6 @@ namespace WarehouseManager.Models
         public string PostalCode { get; set; }
         public string Street { get; set; }
         public string Building { get; set; }
+        public byte Status { get; set; }
     }
 }

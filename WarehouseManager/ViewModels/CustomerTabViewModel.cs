@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using WarehouseManager.Commands;
 using WarehouseManager.Models;
@@ -11,7 +12,15 @@ namespace WarehouseManager.ViewModels
     {
         private readonly CustomerStore _customerStore;
 
-        public IEnumerable<Customer> Customers => _customerStore.Customers;
+        private ObservableCollection<Customer> _customers = new ObservableCollection<Customer>();
+
+        public ObservableCollection<Customer> Customers
+        {
+            get { return _customers; }
+            set { _customers = value; }
+
+        }
+
         public Customer SelectedCustomer
         {
             get => _customerStore.SelectedCustomer;
@@ -40,11 +49,14 @@ namespace WarehouseManager.ViewModels
         public CustomerTabViewModel(INavigationService customerNavigationService, CustomerStore customerStore)
         {
             NewCustomerCommand = new NavCommand(customerNavigationService);
+            EditCustomerCommand = new EditCustomerCommand(customerNavigationService, customerStore);
+            DeleteCustomerCommand = new DeleteCustomerCommand(customerStore, this);
+
+
+            initializeCommand = new LoadCustomersListCommand(customerStore, this);
+            initializeCommand.Execute(null);
 
             _customerStore = customerStore;
-
-            initializeCommand = new LoadingCommand(_customerStore);
-            //initializeCommand.Execute(null);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using WarehouseManager.Data;
 using WarehouseManager.Models;
@@ -15,7 +16,7 @@ namespace WarehouseManager.Stores
             _db = db;
         }
 
-        private List<Customer> _customers;
+        private List<Customer> _customers = new List<Customer>(); // temporary then use load init command
         public IEnumerable<Customer> Customers { get => _customers; }
 
         public Customer SelectedCustomer { get; set; }
@@ -23,30 +24,31 @@ namespace WarehouseManager.Stores
 
         public async override Task Load()
         {
-            _customers = await _db.Customers.ToListAsync();
+            _customers = await _db.Customers.Where(c => c.Status > 0).ToListAsync();
         }
 
-        public void DeleteCustomer()
+        public async Task DeleteCustomer()
         {
+            //instead of deleting change status to 0
+            SelectedCustomer.Status = 0;
+            _db.Update(SelectedCustomer);
+
+            await _db.SaveChangesAsync();
+
             _customers.Remove(SelectedCustomer);
         }
 
         // add through new view 
         public async Task AddCustomer(Customer customer)
         {
-            _customers.Add(customer);
-
             _db.Customers.Add(customer);
             await _db.SaveChangesAsync();
+
+            _customers.Add(customer);
         }
 
         // edit through new view
+        public bool EditingMode { get; set; }
 
-
-
-        public async Task Save()
-        {
-            await _db.SaveChangesAsync();
-        }
     }
 }

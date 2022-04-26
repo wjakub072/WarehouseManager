@@ -140,7 +140,7 @@
                 Background="{x:Null}"
                 BorderBrush="{x:Null}"
                 Foreground="{x:Null}"
-                >
+                Command="{Binding EditCustomerCommand}">
             <Image Source="Icons/edit.ico"
                    Width="44"
                    Height="44" />
@@ -155,7 +155,7 @@
                 Background="{x:Null}"
                 BorderBrush="{x:Null}"
                 Foreground="{x:Null}"
-                >
+                Command="{Binding DeleteCustomerCommand}">
             <Image Source="Icons/trash.ico"
                    Width="42"
                    Height="41" />

@@ -1,4 +1,5 @@
-﻿using WarehouseManager.Stores;
+﻿using WarehouseManager.Models;
+using WarehouseManager.Stores;
 using WarehouseManager.ViewModels;
 
 namespace WarehouseManager.Commands
@@ -16,11 +17,13 @@ namespace WarehouseManager.Commands
 
         public override void Execute(object parameter)
         {
+            Address address = new Models.Address() { Country = "PL" };
+
             //add to store container to keep tracking
-            _store.AddAddress(new Models.Address() { Country = "PL" });
+            _store.AddAddress(address);
 
             //add to view representation
-            _viewModel.Addresses.Add(new Models.Address() { Country = "PL" });
+            _viewModel.Addresses.Add(address);
         }
     }
 }

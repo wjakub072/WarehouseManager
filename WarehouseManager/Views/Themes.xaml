@@ -3,6 +3,7 @@
     <SolidColorBrush x:Key="Background" Color="#6D6D6D"/>
     <SolidColorBrush x:Key="Dark" Color="#343633"/>
     <SolidColorBrush x:Key="Mid" Color="#525252"/>
+    <SolidColorBrush x:Key="Light" Color="#dde4e3"/>
     <SolidColorBrush x:Key="AccentBlue" Color="#5CC8FF"/>
     <SolidColorBrush x:Key="AccentOrange" Color="#E28F58"/>
 </ResourceDictionary>

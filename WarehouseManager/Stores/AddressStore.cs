@@ -17,6 +17,8 @@ namespace WarehouseManager.Stores
             _db = db;
         }
 
+        private List<Address> _addressesToDelete = new List<Address>();
+
         private List<Address> _addresses = new List<Address>(); // temporary
         public IEnumerable<Address> Addresses { get => _addresses; }
 
@@ -31,6 +33,15 @@ namespace WarehouseManager.Stores
         public void DeleteAddress()
         {
             _addresses.Remove(SelectedAddress);
+            _addressesToDelete.Add(SelectedAddress);
+        }
+
+        public async Task DeleteAddresses()
+        {
+            _db.Addresses.RemoveRange(_addressesToDelete);
+            await _db.SaveChangesAsync();
+
+            _addressesToDelete.Clear();
         }
 
         // add through new view 
