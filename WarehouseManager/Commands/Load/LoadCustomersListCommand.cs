@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using WarehouseManager.Stores;
 using WarehouseManager.ViewModels;
 
@@ -23,7 +19,6 @@ namespace WarehouseManager.Commands
         {
             await _customerStore.Load();
 
-            //_viewModel.Customers = new System.Collections.ObjectModel.ObservableCollection<Models.Customer>(_customerStore.Customers);
             _viewModel.Customers.Clear();
             foreach (var customer in _customerStore.Customers)
             {
