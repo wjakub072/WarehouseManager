@@ -1,8 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WarehouseManager.Models
 {
+    [Table("Deliveries", Schema ="WM")]
     internal class Delivery
     {
         [Key]

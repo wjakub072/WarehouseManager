@@ -48,8 +48,10 @@
                   BorderBrush="Transparent"
                   VerticalAlignment="Stretch"
                   Width="auto"
-                  AutoGenerateColumns="False">
-            <!--ItemsSource="{Binding Products, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"-->
+                  AutoGenerateColumns="False"
+                  SelectedItem="{Binding SelectedDocument, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                  ItemsSource="{Binding Documents, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+            <!---->
             <DataGrid.ItemContainerStyle>
                 <Style TargetType="DataGridRow">
                     <Setter Property="HorizontalContentAlignment"
@@ -71,14 +73,6 @@
                 </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
-                <DataGridTemplateColumn  Width="30">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Label Style="{StaticResource DataGridLabel}"
-                                   Content="{Binding OrdinaryNumber}" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
                 <DataGridTemplateColumn  Width="2*"
                                          Header="KOD"
                                          SortMemberPath="Code">
@@ -101,11 +95,11 @@
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn  Width="2*"
                                          Header="DOSTAWCA"
-                                         SortMemberPath="IssueDate">
+                                         SortMemberPath="CustomerName">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Label Style="{StaticResource DataGridLabel}"
-                                   Content="{Binding IssueDate}" />
+                                   Content="{Binding CustomerName}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -115,17 +109,17 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Label Style="{StaticResource DataGridLabel}"
-                                   Content="{Binding IssueDate}" />
+                                   Content="{Binding IssueDateString}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn  Width="2*"
                                          Header="DATA PRZYJĘCIA"
-                                         SortMemberPath="AdmissionDate">
+                                         SortMemberPath="ConfirmDateString">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Label Style="{StaticResource DataGridLabel}"
-                                   Content="{Binding AdmissionDate}" />
+                                   Content="{Binding ConfirmDateString}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

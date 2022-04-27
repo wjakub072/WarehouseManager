@@ -39,7 +39,8 @@ namespace WarehouseManager.ViewModels
             };
             LoadAllDataCommand = new LoadAllDataCommand(
                 customerTabViewModel.InitializeCommand,
-                infoTabViewModel.InitializeCommand);
+                infoTabViewModel.InitializeCommand, 
+                deliveryTabViewModel.LoadDocumentsCommand);
 
             LoadAllDataCommand.Execute(null);
         }

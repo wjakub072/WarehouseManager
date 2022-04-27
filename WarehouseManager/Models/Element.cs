@@ -5,9 +5,10 @@ namespace WarehouseManager.Models
     internal class Element
     {
         [Key]
-        public int ELement_Id { get; set; }
+        public int Element_Id { get; set; }
         public int DeliveryId { get; set; }
         public int PackageId { get; set; }
+        public int AddressId { get; set; }
         public bool Insured { get; set; }
         public decimal Value { get; set; }
         public decimal Weight { get; set; }

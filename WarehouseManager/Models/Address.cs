@@ -16,5 +16,13 @@ namespace WarehouseManager.Models
         public string? Street { get; set; }
         public string? Building { get; set; }
         public byte IsDefault { get; set; }
+
+        [NotMapped]
+        public string StreetAddress { get { return Street + " " + Building; } }
+
+        public override string ToString()
+        {
+            return City + " " + Street + " " + Building;
+        }
     }
 }

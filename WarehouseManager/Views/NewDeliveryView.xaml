@@ -57,16 +57,18 @@
                VerticalAlignment="Center" />
         <TextBox Grid.Column="1"
                  Background="{StaticResource Mid}"
-                 Foreground="{StaticResource Dark}"
+                 Foreground="{StaticResource Light}"
                  BorderBrush="{StaticResource Mid}"
                  FocusVisualStyle="{x:Null}"
                  HorizontalAlignment="Left"
                  Margin="110,3,0,3"
                  Grid.Row="3"
+                 IsReadOnly="True"
                  TextWrapping="NoWrap"
                  VerticalAlignment="Center"
                  Width="190"
-                 Height="23" />
+                 Height="23" 
+                 Text="{Binding CustomerName}"/>
         <Label Content="POCHODZENIE"
                Grid.Column="1"
                Foreground="{StaticResource Dark}"
@@ -76,16 +78,18 @@
                VerticalAlignment="Top" />
         <TextBox Grid.Column="1"
                  Background="{StaticResource Mid}"
-                 Foreground="{StaticResource Dark}"
+                 Foreground="{StaticResource Light}"
                  BorderBrush="{StaticResource Mid}"
                  FocusVisualStyle="{x:Null}"
                  HorizontalAlignment="Left"
                  Margin="110,3,0,3"
                  Grid.Row="4"
+                 IsReadOnly="True"
                  TextWrapping="NoWrap"
                  VerticalAlignment="Top"
                  Width="190"
-                 Height="23" />
+                 Height="23" 
+                 Text="{Binding CustomerOrigin}"/>
         
         <Label Content="NIP"
                Grid.Column="1"
@@ -96,7 +100,7 @@
                VerticalAlignment="Center" />
         <TextBox Grid.Column="1"
                  Background="{StaticResource Mid}"
-                 Foreground="{StaticResource Dark}"
+                 Foreground="{StaticResource Light}"
                  BorderBrush="{StaticResource Mid}"
                  FocusVisualStyle="{x:Null}"
                  HorizontalAlignment="Left"
@@ -105,7 +109,8 @@
                  TextWrapping="NoWrap"
                  VerticalAlignment="Center"
                  Width="150"
-                 Height="23" />
+                 Height="23" 
+                 Text="{Binding NIP}"/>
         <Button Grid.Column="1"
                 HorizontalAlignment="Right"
                 Margin="0,0,10,0"
@@ -116,7 +121,7 @@
                 Background="{x:Null}"
                 BorderBrush="{x:Null}"
                 Foreground="{x:Null}"
-                >
+                Command="{Binding SearchCustomerCommand}">
             <Image Source="Icons/search.ico"
                    Width="30"
                    Height="30" />
@@ -144,7 +149,10 @@
                   Grid.RowSpan="2"
                   VerticalAlignment="Top" 
                   Width="145"
-                  Height="23">
+                  Height="23"
+                  Foreground="{StaticResource Light}"
+                  SelectedItem="{Binding SelectedType}"
+                  ItemsSource="{Binding Types}">
             <ComboBox.Resources>
                 <Style TargetType="{x:Type ComboBox}">
                     <Setter Property="Template">
@@ -178,7 +186,7 @@
                                     <TextBox x:Name="PART_EditableTextBox" Visibility="Hidden" IsReadOnly="{TemplateBinding IsReadOnly}"/>
                                     <Popup Name="Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True"  Focusable="False" PopupAnimation="Slide">
                                         <Grid  Name="DropDown" SnapsToDevicePixels="True" MinWidth="{TemplateBinding ActualWidth}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
-                                            <Border x:Name="DropDownBorder" Background="Blue" />
+                                            <Border x:Name="DropDownBorder" Background="{StaticResource Mid}" />
                                             <ScrollViewer SnapsToDevicePixels="True">
                                                 <StackPanel IsItemsHost="True" />
                                             </ScrollViewer>
@@ -219,8 +227,8 @@
                   Foreground="{StaticResource Background}"
                   BorderBrush="Transparent"
                   HeadersVisibility="Column"
-                  RowHeight="40">
-            <!--ItemsSource="{Binding AvalibleElements, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"-->
+                  RowHeight="40"
+                  ItemsSource="{Binding Elements, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
             <DataGrid.ItemContainerStyle>
                 <Style TargetType="DataGridRow">
                     <Setter Property="HorizontalContentAlignment"
@@ -233,18 +241,18 @@
                 <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
                     <Setter Property="Background" Value="{StaticResource Dark}" />
                 </Style>
-                <Style TargetType="{x:Type CheckBox}"
-                       x:Key="DataGridCheckBox">
-                    <Setter Property="HorizontalAlignment"
-                            Value="Center" />
-                    <Setter Property="HorizontalContentAlignment"
-                            Value="Center" />
-                    <Setter Property="VerticalAlignment"
-                            Value="Center" />
-                    <Setter Property="Margin"
-                            Value="4" />
-                    <Setter Property="VerticalContentAlignment"
-                            Value="Center" />
+                <Style TargetType="{x:Type DataGridCell}">
+                    <Setter Property="Background" Value="{StaticResource Mid}"/>
+                    <Setter Property="BorderBrush" Value="{StaticResource Mid}"/>
+                    <Style.Triggers>
+                        <Trigger Property="DataGridCell.IsSelected"
+                                 Value="True">
+                            <Setter Property="Background"
+                                    Value="{StaticResource Mid}" />
+                            <Setter Property="BorderBrush"
+                                    Value="{StaticResource AccentBlue}" />
+                        </Trigger>
+                    </Style.Triggers>
                 </Style>
                 <Style TargetType="{x:Type TextBox}"
                        x:Key="DataGridTextBox">
@@ -256,6 +264,14 @@
                             Value="Stretch" />
                     <Setter Property="VerticalContentAlignment"
                             Value="Center" />
+                    <Setter Property="Background"
+                            Value="{StaticResource Mid}"/>
+                    <Setter Property="BorderBrush"
+                            Value="{StaticResource Dark}"/>
+                    <Setter Property="IsInactiveSelectionHighlightEnabled"
+                            Value="False"/>
+                    <Setter Property="Foreground"
+                            Value="{StaticResource Light}"/>
                 </Style>
                 <Style TargetType="{x:Type Label}"
                        x:Key="DataGridLabel">
@@ -263,44 +279,90 @@
                             Value="Center" />
                     <Setter Property="VerticalContentAlignment"
                             Value="Center" />
+                    <Setter Property="Foreground"
+                            Value="{StaticResource Light}"/>
                 </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
-                <DataGridTemplateColumn Width="30">
+                <DataGridTemplateColumn Header="JEDNOSTKA" Width="3*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <CheckBox Style="{StaticResource DataGridCheckBox}"
-                                      IsChecked="{Binding Selected, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn  Width="3*"
-                                         Header="JEDNOSTKA"
-                                         SortMemberPath="OrderCode">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Label Style="{StaticResource DataGridLabel}"
-                                   Content="{Binding OrderCode}" />
+                            <ComboBox>
+                                <ComboBox.Style>
+                                    <Style TargetType="{x:Type ComboBox}">
+                                        <Setter Property="ItemsSource"
+                                                Value="{Binding Path=PackageTypes}" />
+                                        <Setter Property="SelectedItem"
+                                                Value="{Binding Path=SelectedType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                        <Setter Property="Foreground"
+                                                Value="{StaticResource Light}"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="ComboBox">
+                                                    <Grid>
+                                                        <ToggleButton Grid.Column="2" Focusable="false" IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}" >
+                                                            <ToggleButton.Template>
+                                                                <ControlTemplate>
+                                                                    <Grid>
+                                                                        <Grid.ColumnDefinitions>
+                                                                            <ColumnDefinition Width="5*" />
+                                                                            <ColumnDefinition Width="*" />
+                                                                        </Grid.ColumnDefinitions>
+                                                                        <Border x:Name="Border"  Grid.ColumnSpan="2" CornerRadius="0" Background="{StaticResource Mid}"  />
+
+                                                                        <Path x:Name="Arrow" Grid.Column="1"  Fill="{StaticResource AccentBlue}" HorizontalAlignment="Center" VerticalAlignment="Center" Data="M 0 0 L 4 4 L 8 0 Z"/>
+                                                                    </Grid>
+                                                                    <ControlTemplate.Triggers>
+                                                                        <Trigger Property="ToggleButton.IsMouseOver" Value="true">
+                                                                            <Setter TargetName="Border" Property="Background" Value="{StaticResource Mid}" />
+                                                                        </Trigger>
+                                                                        <Trigger Property="ToggleButton.IsChecked" Value="true">
+                                                                            <Setter TargetName="Border" Property="Background" Value="{StaticResource Mid}" />
+                                                                        </Trigger>
+                                                                    </ControlTemplate.Triggers>
+                                                                </ControlTemplate>
+                                                            </ToggleButton.Template>
+                                                        </ToggleButton>
+                                                        <ContentPresenter Name="ContentSite" IsHitTestVisible="False"  Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" Margin="3"  />
+                                                        <TextBox x:Name="PART_EditableTextBox" Visibility="Hidden" IsReadOnly="{TemplateBinding IsReadOnly}"/>
+                                                        <Popup Name="Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True"  Focusable="False" PopupAnimation="Slide">
+                                                            <Grid  Name="DropDown" SnapsToDevicePixels="True" MinWidth="{TemplateBinding ActualWidth}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                                                <Border x:Name="DropDownBorder" Background="{StaticResource Mid}" />
+                                                                <ScrollViewer SnapsToDevicePixels="True">
+                                                                    <StackPanel IsItemsHost="True" />
+                                                                </ScrollViewer>
+                                                            </Grid>
+                                                        </Popup>
+                                                    </Grid>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                    
+                                </ComboBox.Style>
+                            </ComboBox>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn  Width="2*"
                                          Header="ILOSC"
-                                         SortMemberPath="CommodityName">
+                                         SortMemberPath="Amount">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Label Style="{StaticResource DataGridLabel}"
-                                   Content="{Binding CommodityName}" />
+                            <TextBox Style="{StaticResource DataGridTextBox}"
+                                     Text="{Binding Amount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                     />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn  Width="2*"
-                                         Header="KOD DODSTAWY"
-                                         SortMemberPath="CommodityName">
+                                         Header="KOD SERYJNY"
+                                         SortMemberPath="SerialCode">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Label Style="{StaticResource DataGridLabel}"
-                                   Content="{Binding CommodityName}" />
+                            <TextBox Style="{StaticResource DataGridTextBox}"
+                                     Text="{Binding SerialCode, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                     />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -310,19 +372,19 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Label Style="{StaticResource DataGridLabel}"
-                                   Content="{Binding CommodityName}" />
+                                   Content="{Binding Address}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
                 <DataGridTemplateColumn  Width="2*"
                                          Header="WARTOSC"
-                                         SortMemberPath="Amount">
+                                         SortMemberPath="Value">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBox Style="{StaticResource DataGridTextBox}"
-                                     Text="{Binding Amount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                     BorderBrush="{Binding ErrorState, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                     Text="{Binding Value, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                     />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -339,7 +401,7 @@
                 BorderBrush="{x:Null}"
                 Foreground="{x:Null}"
                 VerticalAlignment="Center"
-                >
+                Command="{Binding SaveDocumentCommand}">
             <Image Source="Icons/disc.ico"
                    Width="37"
                    Height="37" />
@@ -392,7 +454,9 @@
                   Foreground="{StaticResource Background}"
                   BorderBrush="Transparent"
                   HeadersVisibility="Column"
-                  RowHeight="30">
+                  RowHeight="30"
+                  SelectedItem="{Binding SelectedAddress}"
+                  ItemsSource="{Binding CustomerAddresses, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
             <DataGrid.ItemContainerStyle>
                 <Style TargetType="DataGridRow">
                     <Setter Property="HorizontalContentAlignment"
@@ -417,31 +481,31 @@
                 
                 <DataGridTemplateColumn  Width="*"
                                          Header="KRAJ"
-                                         SortMemberPath="OrderCode">
+                                         SortMemberPath="Country">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Label Style="{StaticResource DataGridLabel}"
-                                   Content="{Binding OrderCode}" />
+                                   Content="{Binding Country}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn  Width="2*"
                                          Header="MIEJSCOWOŚĆ"
-                                         SortMemberPath="CommodityName">
+                                         SortMemberPath="City">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Label Style="{StaticResource DataGridLabel}"
-                                   Content="{Binding CommodityName}" />
+                                   Content="{Binding City}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn  Width="2*"
                                          Header="ADRES"
-                                         SortMemberPath="CommodityName">
+                                         SortMemberPath="StreetAddress">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Label Style="{StaticResource DataGridLabel}"
-                                   Content="{Binding CommodityName}" />
+                                   Content="{Binding StreetAddress}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -457,7 +521,7 @@
                 BorderBrush="{x:Null}"
                 Foreground="{x:Null}"
                 VerticalAlignment="Bottom"
-                Command="{Binding CancelNewCollectiveOrderCommand}">
+                Command="{Binding AddElementCommand}">
             <Image Source="Icons/add.ico"
                    Width="40"
                    Height="40" />
@@ -472,7 +536,7 @@
                 Background="{x:Null}"
                 BorderBrush="{x:Null}"
                 Foreground="{x:Null}"
-                >
+                Command="{Binding DeleteElementCommand}">
             <Image Source="Icons/trash.ico"
                    Width="42"
                    Height="41" />
@@ -484,7 +548,7 @@
                Margin="20,3,0,0"
                Grid.Row="8"
                VerticalAlignment="Center" />
-        <Label Content="0"
+        <Label Content="{Binding SumAmount}"
                Grid.Column="2"
                Foreground="{StaticResource Dark}"
                HorizontalAlignment="Right"
@@ -501,7 +565,7 @@
                FontWeight="DemiBold"
                Grid.Row="8"
                VerticalAlignment="Center" />
-        <Label Content="0"
+        <Label Content="{Binding SumValue}"
                Grid.Column="1"
                Foreground="{StaticResource Dark}"
                FontWeight="DemiBold"

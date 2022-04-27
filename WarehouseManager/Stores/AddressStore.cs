@@ -30,6 +30,11 @@ namespace WarehouseManager.Stores
             _addresses = await _db.Addresses.ToListAsync();
         }
 
+        public async Task LoadForCustomer(int customerId)
+        {
+            _addresses = await _db.Addresses.Where(a => a.CustomerId == customerId).ToListAsync();
+        }
+
         public void DeleteAddress()
         {
             _addresses.Remove(SelectedAddress);

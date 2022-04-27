@@ -87,9 +87,6 @@
             </StackPanel>
         </Grid>
         
-        
-        
-        
         <Grid Grid.Row="1">
             <Grid.Resources>
                 <DataTemplate DataType="{x:Type viewModels:LoginViewModel}">
@@ -98,7 +95,7 @@
                 <DataTemplate DataType="{x:Type viewModels:HomePageViewModel}">
                     <views:HomePageView/>
                 </DataTemplate>
-                <DataTemplate DataType="{x:Type viewModels:NewDeliveryViewModel}">
+                <DataTemplate DataType="{x:Type viewModels:DeliveryViewModel}">
                     <views:NewDeliveryView/>
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type viewModels:CustomerViewModel}">

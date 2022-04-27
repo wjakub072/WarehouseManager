@@ -35,7 +35,10 @@ namespace WarehouseManager
             services.AddSingleton<CustomerStore>();
             services.AddSingleton<AddressStore>();
             services.AddSingleton<AvailabilityStore>();
+            services.AddSingleton<ElementStore>();
+            services.AddSingleton<DocumentStore>();
             services.AddSingleton<SectorStore>();
+            services.AddSingleton<PackageStore>();
 
             //viewModels
             services.AddSingleton<MainViewModel>();
@@ -44,21 +47,31 @@ namespace WarehouseManager
                 DataContext = m.GetRequiredService<MainViewModel>()
             });
 
-            services.AddTransient<HomePageViewModel>();
 
             services.AddTransient<CustomerViewModel>(d => new CustomerViewModel(HomeNavigation(),
                 _host.Services.GetRequiredService<CustomerStore>(),
                 _host.Services.GetRequiredService<AddressStore>()
                 ));
             services.AddTransient<CustomerTabViewModel>(d => new CustomerTabViewModel(NewCustomerNavigation(),
-                _host.Services.GetRequiredService<CustomerStore>()));
+                _host.Services.GetRequiredService<CustomerStore>()
+                ));
             services.AddTransient<AvailabilityViewModel>();
             services.AddTransient<WarehouseInfoTabViewModel>();
 
             services.AddTransient<LoginViewModel>(d => new LoginViewModel(HomeNavigation()));
-            services.AddTransient<NewDeliveryViewModel>(d => new NewDeliveryViewModel(HomeNavigation()));
-            services.AddTransient<DeliveryTabViewModel>(d => new DeliveryTabViewModel(NewDeliveryNavigation()));
+            services.AddTransient<DeliveryViewModel>(d => new DeliveryViewModel(HomeNavigation(), 
+                _host.Services.GetRequiredService<AddressStore>(),
+                _host.Services.GetRequiredService<ElementStore>(),
+                _host.Services.GetRequiredService<DocumentStore>(),
+                _host.Services.GetRequiredService<PackageStore>(),
+                _host.Services.GetRequiredService<CustomerStore>()
+                ));
+            services.AddTransient<DeliveryTabViewModel>(d => new DeliveryTabViewModel(NewDeliveryNavigation(),
+                _host.Services.GetRequiredService<DocumentStore>(),
+                _host.Services.GetRequiredService<CustomerStore>()
+                ));
 
+            services.AddTransient<HomePageViewModel>();
         }
 
         protected override async void OnStartup(StartupEventArgs e)
@@ -100,7 +113,7 @@ namespace WarehouseManager
         private INavigationService NewDeliveryNavigation()
         {
             return new NavigationService(_host.Services.GetRequiredService<NavigationStore>(),
-                () => _host.Services.GetRequiredService<NewDeliveryViewModel>());
+                () => _host.Services.GetRequiredService<DeliveryViewModel>());
         }
 
         private INavigationService NewCustomerNavigation()
