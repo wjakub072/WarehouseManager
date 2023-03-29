@@ -50,7 +50,11 @@ namespace WarehouseManager.Stores
 
         public async Task SaveRangeToDatabase(int documentId)
         {
-            var unsaved = _elements.Where(a => a.Element_Id == 0 && a.DeliveryId == documentId).ToList();
+            var unsaved = _elements.Where(a => a.Element_Id == 0 && a.DeliveryId == 0).ToList();
+            foreach (var elem in unsaved)
+            {
+                elem.DeliveryId = documentId;
+            }
 
             _db.Elements.AddRange(unsaved);
 

@@ -68,9 +68,37 @@
                             Value="Center" />
                     <Setter Property="VerticalContentAlignment"
                             Value="Center" />
+                    <Setter Property="Background"
+                            Value="{StaticResource Mid}"/>
+                    <Setter Property="Foreground"
+                            Value="{StaticResource Light}"/>
+
+                </Style>
+                <Style TargetType="{x:Type DataGridCell}">
+                    <Setter Property="Background" Value="{StaticResource Mid}"/>
+                    <Setter Property="BorderBrush" Value="{StaticResource Mid}"/>
+                    <Style.Triggers>
+                        <Trigger Property="DataGridCell.IsSelected"
+                                 Value="True">
+                            <Setter Property="Background"
+                                    Value="{StaticResource Mid}" />
+                            <Setter Property="BorderBrush"
+                                    Value="{StaticResource AccentBlue}" />
+                        </Trigger>
+                    </Style.Triggers>
                 </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
+                <DataGridTemplateColumn  Width="3*"
+                                         Header="KLIENT"
+                                         SortMemberPath="CustomerName">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Style="{StaticResource DataGridLabel}"
+                                   Content="{Binding CustomerName}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTemplateColumn  Width="2*"
                                          Header="KOD"
                                          SortMemberPath="SerialCode">
@@ -82,16 +110,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 
-                <DataGridTemplateColumn  Width="3*"
-                                         Header="KLIENT"
-                                         SortMemberPath="CustomerName">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Label Style="{StaticResource DataGridLabel}"
-                                   Content="{Binding CustomerName}" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+               
                 
                 <DataGridTemplateColumn  Width="2*"
                                          Header="ILOŚĆ"
@@ -106,11 +125,21 @@
                 
                 <DataGridTemplateColumn  Width="200"
                                          Header="JEDNOSTKA"
-                                         SortMemberPath="Packing">
+                                         SortMemberPath="Package">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Label Style="{StaticResource DataGridLabel}"
-                                   Content="{Binding Packing}" />
+                                   Content="{Binding Package}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn  Width="2*"
+                                         Header="WARTOŚĆ"
+                                         SortMemberPath="Value">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Style="{StaticResource DataGridLabel}"
+                                   Content="{Binding Value}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

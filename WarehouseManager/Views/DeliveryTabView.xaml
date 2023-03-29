@@ -70,6 +70,23 @@
                             Value="Center" />
                     <Setter Property="VerticalContentAlignment"
                             Value="Center" />
+                    <Setter Property="Background"
+                            Value="{StaticResource Mid}"/>
+                    <Setter Property="Foreground"
+                            Value="{StaticResource Light}"/>
+                </Style>
+                <Style TargetType="{x:Type DataGridCell}">
+                    <Setter Property="Background" Value="{StaticResource Mid}"/>
+                    <Setter Property="BorderBrush" Value="{StaticResource Mid}"/>
+                    <Style.Triggers>
+                        <Trigger Property="DataGridCell.IsSelected"
+                                 Value="True">
+                            <Setter Property="Background"
+                                    Value="{StaticResource Mid}" />
+                            <Setter Property="BorderBrush"
+                                    Value="{StaticResource AccentBlue}" />
+                        </Trigger>
+                    </Style.Triggers>
                 </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
@@ -158,10 +175,10 @@
                 Background="{x:Null}"
                 BorderBrush="{x:Null}"
                 Foreground="{x:Null}"
-                >
+                Command="{Binding EditDocumentCommand}">
             <Image Source="Icons/edit.ico"
-                   Width="44"
-                   Height="44" />
+                   Width="43"
+                   Height="43" />
         </Button>
         <Button Grid.Column="2"
                 HorizontalAlignment="Right"
@@ -173,7 +190,7 @@
                 Background="{x:Null}"
                 BorderBrush="{x:Null}"
                 Foreground="{x:Null}"
-                >
+                Command="{Binding DeleteDocumentCommand}">
             <Image Source="Icons/trash.ico"
                    Width="42"
                    Height="41" />

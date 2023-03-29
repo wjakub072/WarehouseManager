@@ -24,6 +24,10 @@ namespace WarehouseManager.ViewModels
         private readonly DocumentStore _documentStore;
 
         public ICommand NewDeliveryNavCommand { get; set; }
+        public ICommand DeleteDocumentCommand { get; set; }
+        public ICommand EditDocumentCommand { get; set; }
+
+
         public LoadDocumentsCommand LoadDocumentsCommand { get; set; }
 
 
@@ -45,6 +49,8 @@ namespace WarehouseManager.ViewModels
         public DeliveryTabViewModel(INavigationService newDeliveryNav, DocumentStore documentStore, CustomerStore customerStore)
         {
             NewDeliveryNavCommand = new NavCommand(newDeliveryNav);
+            EditDocumentCommand = new EditDocumentCommand(newDeliveryNav, documentStore);
+            DeleteDocumentCommand = new DeleteDocumentCommand(documentStore, this);
 
             _documentStore = documentStore;
 

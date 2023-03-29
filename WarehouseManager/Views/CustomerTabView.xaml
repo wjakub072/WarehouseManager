@@ -72,6 +72,23 @@
                             Value="Center" />
                     <Setter Property="VerticalContentAlignment"
                             Value="Center" />
+                    <Setter Property="Background"
+                            Value="{StaticResource Mid}"/>
+                    <Setter Property="Foreground"
+                            Value="{StaticResource Light}"/>
+                </Style>
+                <Style TargetType="{x:Type DataGridCell}">
+                    <Setter Property="Background" Value="{StaticResource Mid}"/>
+                    <Setter Property="BorderBrush" Value="{StaticResource Mid}"/>
+                    <Style.Triggers>
+                        <Trigger Property="DataGridCell.IsSelected"
+                                 Value="True">
+                            <Setter Property="Background"
+                                    Value="{StaticResource Mid}" />
+                            <Setter Property="BorderBrush"
+                                    Value="{StaticResource AccentBlue}" />
+                        </Trigger>
+                    </Style.Triggers>
                 </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>

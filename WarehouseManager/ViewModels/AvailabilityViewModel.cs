@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using WarehouseManager.Commands;
 using WarehouseManager.Models;
@@ -10,7 +11,15 @@ namespace WarehouseManager.ViewModels
     {
         private readonly AvailabilityStore _availabilityStore;
 
-        public IEnumerable<Availability> Availabilities => _availabilityStore.Availabilities;
+
+        private ObservableCollection<Availability> _availabilities = new ObservableCollection<Availability>();
+
+        public ObservableCollection<Availability> Availabilities
+        {
+            get { return _availabilities; }
+            set { _availabilities= value; }
+        }
+
 
         private string _importStatus;
 
@@ -24,15 +33,14 @@ namespace WarehouseManager.ViewModels
             }
         }
 
-        private ICommand initializeCommand;
+        public LoadAvailabilityCommand initializeCommand { get; set; }
 
         public AvailabilityViewModel(AvailabilityStore availabilityStore)
         {
             _availabilityStore = availabilityStore;
             //assign which store to load through parameter
-            initializeCommand = new LoadingCommand(_availabilityStore);
+            initializeCommand = new LoadAvailabilityCommand(_availabilityStore, this);
             //execute async command
-            //initializeCommand.Execute(null);
         }
     }
 }

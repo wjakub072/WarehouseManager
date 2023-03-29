@@ -9,7 +9,6 @@ namespace WarehouseManager.Data
 
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Customer> Customers{ get; set; }
-        public DbSet<Document> Deliveries { get; set; }
         public DbSet<Document> Documents { get; set; }
         public DbSet<Element> Elements { get; set; }
         public DbSet<Package> Packages { get; set; }

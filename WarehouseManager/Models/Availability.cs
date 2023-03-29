@@ -6,10 +6,9 @@ namespace WarehouseManager.Models
     internal class Availability // later map to procedure result
     {
         public string CustomerName { get; set; }
-        public decimal Weight { get; set; }
-        public string Unit { get; set; }
         public string SerialCode { get; set; }
-        public string Packing { get; set; }
+        public string Package { get; set; }
         public decimal Amount { get; set; }
+        public decimal Value { get; set; }
     }
 }

@@ -105,6 +105,8 @@ namespace WarehouseManager.ViewModels
 
         private ICommand loadPackagesCommand;
 
+        private ICommand initializeCommand;
+
         private ObservableCollection<Address> _customerAddresses = new ObservableCollection<Address>();
 
         public ObservableCollection<Address> CustomerAddresses
@@ -163,8 +165,17 @@ namespace WarehouseManager.ViewModels
             SearchCustomerCommand = new SearchCustomerCommand(customerStore, addressStore, this);
             DeleteElementCommand = new DeleteElementCommand(elementStore, this);
             SaveDocumentCommand = new SaveDocumentCommand(homeNavigationService, this, documentStore, elementStore);
+            initializeCommand = new LoadDocumentCommand(documentStore, addressStore, customerStore, elementStore, packageStore, this);
 
-            loadPackagesCommand.Execute(null);
+            if (documentStore.EditingMode == true)
+            {
+                initializeCommand.Execute(null);
+            } else
+            {
+
+                loadPackagesCommand.Execute(null);
+            }
+
         }
     }
 }

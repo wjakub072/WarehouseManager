@@ -40,7 +40,8 @@ namespace WarehouseManager.ViewModels
             LoadAllDataCommand = new LoadAllDataCommand(
                 customerTabViewModel.InitializeCommand,
                 infoTabViewModel.InitializeCommand, 
-                deliveryTabViewModel.LoadDocumentsCommand);
+                deliveryTabViewModel.LoadDocumentsCommand,
+                availabilityViewModel.initializeCommand);
 
             LoadAllDataCommand.Execute(null);
         }

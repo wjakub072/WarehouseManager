@@ -11,12 +11,14 @@ namespace WarehouseManager.Commands
         private readonly LoadCustomersListCommand _customers;
         private readonly LoadSectorsCommand _sectors;
         private readonly LoadDocumentsCommand _documents;
+        private readonly LoadAvailabilityCommand _availability;
 
-        public LoadAllDataCommand(LoadCustomersListCommand customers, LoadSectorsCommand sectors, LoadDocumentsCommand documents)
+        public LoadAllDataCommand(LoadCustomersListCommand customers, LoadSectorsCommand sectors, LoadDocumentsCommand documents, LoadAvailabilityCommand availability)
         {
             _customers = customers;
             _sectors = sectors;
             _documents = documents;
+            _availability = availability;
         }
 
         public override async Task ExecuteAsync(object parameter)
@@ -25,7 +27,9 @@ namespace WarehouseManager.Commands
 
             await _sectors.ExecuteAsync(parameter);
 
-            await _documents.ExecuteAsync(parameter);   
+            await _documents.ExecuteAsync(parameter);
+
+            await _availability.ExecuteAsync(parameter);
         }
     }
 }

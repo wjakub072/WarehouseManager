@@ -26,7 +26,7 @@ namespace WarehouseManager.Stores
             _documents = await _db.Documents.ToListAsync();
         }
 
-        public async Task DeleteDocuments()
+        public async Task DeleteDocument()
         {
             _db.Documents.Remove(SelectedDocument);
             await _db.SaveChangesAsync();

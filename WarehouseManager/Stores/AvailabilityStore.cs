@@ -21,7 +21,7 @@ namespace WarehouseManager.Stores
 
         public async override Task Load()
         {
-            _availabilities = await _db.Availabilities.ToListAsync();
+            _availabilities = await _db.Availabilities.FromSqlRaw<Availability>("exec WM.GetAvailability").ToListAsync();
         }
     }
 }
